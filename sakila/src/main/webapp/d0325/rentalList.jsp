@@ -2,6 +2,16 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.sql.*" %>
 <%
+	//로그인 되었는지 아닌지?
+	Integer staffId = (Integer)session.getAttribute("loginStaff");
+
+	if(staffId == null) { //로그아웃 상태라면
+		response.sendRedirect("/sakila/loginForm.jsp");
+		//로그인 페이지로 리다이렉트
+		return;
+	}
+%>
+<%
 	//페이징
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null) {
