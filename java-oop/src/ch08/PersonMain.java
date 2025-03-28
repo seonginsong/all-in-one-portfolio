@@ -25,7 +25,7 @@ public class PersonMain {
 
       boolean x = false;
       p1.hw12(x); // flag = false
-      System.out.println(x); // flase
+      System.out.println(x); // false
       
       // 1-3
       p1.m13b("guest", "1234");

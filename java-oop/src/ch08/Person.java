@@ -5,7 +5,9 @@ import java.util.HashMap;
 public class Person {
    public String id;
    public String pw;
+   // 	기본 생성자
    public Person() {}
+   // 매개변수가 있는 생성자 (ID와 비밀번호를 받음)
    public Person (String id, String pw) {
       this.id= id;
       this.pw= pw;
@@ -76,7 +78,8 @@ public class Person {
 	      }
 	   }
 	   
-	   // 1-4 리턴타입 : void, 매개변수 : 배열
+	   // 1-4) 리턴타입: void, 매개변수: int[] (배열)
+	   // 배열에 1부터 N까지의 값을 채우고 출력
 	   public void m14a(int[] arr) {
 		   if(arr == null) {
 			    System.out.println("null 입력 안됩니다.");

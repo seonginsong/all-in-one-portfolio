@@ -13,7 +13,7 @@ public class EnumTest {
 		} else {
 			System.out.println("잘못된 값입니다");
 		}
-		// Enum 사용시 잘못된 값이 대입될 수 없다
+		 // Enum 사용 - 잘못된 값이 대입될 가능성을 방지할 수 있음
 		Gender gender2 = null;
 		gender2 = Gender.MALE;
 
@@ -22,7 +22,7 @@ public class EnumTest {
 		} else {
 			System.out.println("여자");
 		}
-		// Enum 사용시 if보다 switch가 가독성이 높을 수 가 있다
+		 // Enum을 switch문으로 처리하면 가독성이 좋아질 수 있음
 		switch(gender2) {
 		case Gender.MALE:
 			System.out.println("남자");
