@@ -16,7 +16,12 @@
 </head>
 <body>
 	<h1>Staff Login</h1>
-	<form action="/sakila/loginAction.jsp">
+	<form action="/sakila/loginAction.jsp" method="post">
+	<!-- 데이터 값을 매개값으로 다른페이지로 전송하는 방법
+		1) a태그 : get
+		2) form태그의 method 속성 : get, post
+	
+	 -->
 		<table border="1">
 			<tr>
 				<th>staffId</th>

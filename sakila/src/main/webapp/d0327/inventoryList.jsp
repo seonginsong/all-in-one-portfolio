@@ -79,8 +79,8 @@
 					+"from (select i.inventory_id, f.title "
 					+"from inventory i inner join film f on i.film_id = f.film_id) t1 "
 					+"left join (select inventory_id, rental_date"
-					+", case when return_date is null then '대여불가' "
-					+"else '대여가능' end isRental from rental "
+					+", case when return_date is null then '반납하기' "
+					+"else '대여하기' end isRental from rental "
 					+"where (inventory_id, rental_date) in "
 					+"(select inventory_id, max(rental_date) from rental group by inventory_id) "
 					+"order by inventory_id asc) t2 on t1.inventory_id = t2.inventory_id";
@@ -139,12 +139,16 @@
 					<%
 						if(i.get("isRental") == null) {
 					%>
-							<td><button type="submit">대여가능</button></td>
+							<td><a href="/sakila/d0331/insertRentalForm.jsp?inventoryId=<%=i.get("inventoryId")%>">대여하기</a></td>
 					<%									
+						} else if(i.get("isRental").equals("대여하기")) {
+					%>
+							<td><a href="/sakila/d0331/insertRentalForm.jsp?inventoryId=<%=i.get("inventoryId")%>">대여하기</a></td>
+					<%
 						} else {
 					%>
-							<td><button type="submit"><%=i.get("isRental")%></button></td>
-					<%
+							<td><button type="submit">반납하기</button></td>
+					<%	
 						}
 					%>
 				</tr>
