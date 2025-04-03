@@ -3,6 +3,7 @@
 <%@ page import="dto.*"%>
 <%@ page import="model.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="java.util.Calendar" %>
 <%
 	// question 테이블 리스트 -> 페이징 -> title 링크(stardate <= 오늘 날짜 <= enddate) -> 투표 프로그램
 	
@@ -13,14 +14,14 @@
 	}
 	
 	// 페이징 정보 설정
-	int rowPerPage = 3; // 한 페이지 당 보여줄 행 개수
+	int rowPerPage = 10; // 한 페이지 당 보여줄 행 개수
 	Paging paging = new Paging();
 	paging.setCurrentPage(currentPage);
 	paging.setRowPerPage(rowPerPage);
 	
 	// Dao 객체 생성
 	QuestionDao questionDao = new QuestionDao();
-	
+	ItemDao itemDao = new ItemDao();
 	// 마지막 페이지 설정
 	int lastPage = paging.getLastPage((questionDao.getTotalQuestion()));
 	
@@ -32,6 +33,12 @@
 	
 	// 해당 페이지에 속한 리스트 조회
 	ArrayList<Question> list = questionDao.selectQuestionList(paging);
+	System.out.println(today);
+	
+	/*강사님
+	QuestionDao questiondao = new QuestionDao(); 
+	ArrayList<HashMap<String, Object>> list1 = questiondao.selectQuestionList1();
+	*/
 %>
 <!DOCTYPE html>
 <html>
@@ -43,22 +50,28 @@
 	<h1>설문 리스트</h1>
 	<table border="1">
 		<tr>
-			<th>num</th>
-			<th>title</th>
-			<th>startdate</th>
-			<th>enddate</th>
-			<th>type</th>
-			<th>isVote</th>
+			<th>번호</th>
+			<th>제목</th>
+			<th>시작일</th>
+			<th>종료일</th><!-- 투표현황(몇명 추가하기) -->
+			<th>투표현황</th>
+			<th>투표</th>
+			<th>삭제</th>
+			<th>수정</th>
+			<th>종료일수정</th>
+			<th>결과</th>
 		</tr>
-		<%
+		<%	
+			
 			for(Question q : list) {
+				int totalCount = itemDao.getTotalCountByQnum(q.getNum());
 		%>
 				<tr>
 					<td><%=q.getNum()%></td>
 					<td><%=q.getTitle()%></td>
 					<td><%=q.getStartdate()%></td>
 					<td><%=q.getEnddate()%></td>
-					<td><%=q.getType()%></td>
+					<td><%=totalCount%></td>
 					<td>
 					<%
 						Date startDate = sdf.parse(q.getStartdate());
@@ -78,10 +91,144 @@
 						}
 					%>
 					</td>
+					<td>
+                    <%
+                        if (totalCount == 0) {
+                    %>
+                            <a href="/poll/deletePollForm.jsp?num=<%=q.getNum()%>">삭제</a>
+                    <%
+                        } else {
+                    %>
+                            삭제 불가(투표인원존재)
+                    <%
+                        }
+                    %>
+                    </td>
+					<td><a href="/poll/updatePollForm.jsp?num=<%=q.getNum()%>">수정하기</a></td>
+					<td>
+					<%
+						if(endDate.before(today)) {
+					%>
+							<a href="">종료일 수정</a>
+					<%
+						} else {
+					%>
+							종료일 수정 불가	
+					<%
+						}
+					%>
+					</td>
+					<td>
+					<%
+						if(endDate.before(today)) {
+					%>
+							<a href="">결과보기</a>
+					<%
+						} else {
+					%>
+							투표 완료X	
+					<%
+						}
+					%>
+					</td>
 				</tr>
 		<%
 			}
 		%>
+	<%
+	/* 수정
+			Calendar today1 = Calendar.getInstance();
+			int year = today1.get(Calendar.YEAR);
+			int month = today1.get(Calendar.MONTH)+1;
+			int date1 = today1.get(Calendar.DATE);
+			
+			String strToday = year+"-";
+			if(month<10) {
+				strToday = strToday + "0" + month + "-";
+			} else {
+				strToday = strToday + month;
+			}
+			if(date1<10) {
+				strToday = strToday + "0" + date1 + "-";
+			} else {
+				strToday = strToday + date1;
+			}
+			
+		for(HashMap<String, Object> m : list1) {
+			String startdate = (String)m.get("startdate");
+			String enddate = (String)m.get("enddate");
+	%
+			<tr>
+			<td><%=m.get("num")%</td>
+			<td><%=m.get("title")%</td>
+			<td><%=m.get("startdate")%</td>
+			<td><%=m.get("enddate")%</td>
+			<th>
+				<%	
+					오늘날짜 빼기 시작날짜 : 양수(+) && 끝날짜 - 오늘날짜 : 양수(+) 
+					if(strToday.compareTo(startdate) < 0) {
+				%	
+						투표전	
+				<%		
+					} else if(strToday.compareTo(enddate) > 0) {
+				%
+						투표종료
+				<%
+					} else {
+				%
+						<a href"">투표가능</a>
+				<%
+					}
+				%
+			</th>
+			<td><%if((Integer)(m.get("cnt")) > 0) {
+				%
+						삭제불가
+				<%
+					} else {
+						<a href="">삭제</a>
+					}
+			</td>
+			<td><%if((Integer)(m.get("cnt")) > 0) {
+				%
+						수정불가
+				<%
+					} else {
+						<a href="">수정</a>
+					}
+			</td>
+			<td>
+			<%
+				if(enddate.compareTo(strToday) >= 0) {
+			%
+				<a href="">종료일 수정</a>
+			<%
+				} else {
+			%
+				종료일 수정 불가
+			<%
+				}
+			%
+			</td>
+			<td>
+			<%
+			if(strToday.compareTo(enddate) > 0) {
+		%
+			<a href="">결과보기</a>
+		<%
+			} else {
+		%
+			투표진행중
+		<%
+			}
+		%
+			</td>
+			</tr>
+		}
+	
+	
+	*/	
+	%>
 	</table>
 	
 	<!-- 페이징 -->
@@ -92,7 +239,7 @@
 	<%
 		}
 	%>
-			<%=currentPage%>
+			<%=currentPage%>/<%=lastPage%>
 	<%
 		if(currentPage < lastPage) {
 	%>
@@ -100,8 +247,7 @@
 	<%
 		}
 	%>
-<!-- foreach문 ArrayList<Question> list 출력 title 
-링크(startdate <= 오늘날짜 <= enddate) 투표시작전, 투표종료, 투표하기 -->
+	<a href="/poll/insertPollForm.jsp">설문작성</a>
 <!-- 번호|제목|기간|복수투표|투표(종료, 시작전)|삭제|수정|종료일자수정|결과 -->
 <!-- 삭제:deletePoll 투표가 한명도 참여 없으면 -->
 <!-- 전체 수정 : updatePollForm -> updatePollAction : update question, delete item, insert item-->

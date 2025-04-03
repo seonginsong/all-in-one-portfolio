@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dto.Paging;
 import dto.Question;
@@ -84,4 +85,82 @@ public class QuestionDao {
 		conn.close();
 		return cnt;
 	}
+	
+	public void deleteQuestion(int num) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
+		PreparedStatement stmt1 = null;
+		PreparedStatement stmt2 = null;
+		String sql1 = "delete from item where qnum = ?";
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "java1234");
+		stmt1 = conn.prepareStatement(sql1);
+		
+		
+		
+	}
+	
+	
+	public void updateQuestion(Question q) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		String sql = "update question set title = ?, startdate = ?, enddate = ? where num = ?";
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "java1234");
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, q.getTitle());
+		stmt.setString(2, q.getStartdate());
+		stmt.setString(3, q.getEnddate());
+		stmt.setInt(4, q.getNum());
+		stmt.executeUpdate();
+	}
+	
+	
+	public Question selectQuestion(int num) throws ClassNotFoundException, SQLException {
+		Question question = new Question();
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select title, startdate, enddate, type from question where num = ?";
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "java1234");
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, num);
+		rs = stmt.executeQuery();
+		rs.next();
+		question.setTitle(rs.getString("title"));
+		question.setStartdate(rs.getString("startdate"));
+		question.setEnddate(rs.getString("enddate"));
+		question.setType(rs.getInt("type"));
+		
+		return question;
+	}
+	/*강사님
+	public ArrayList<HashMap<String, Object>> selectQuestionList1() throws ClassNotFoundException, SQLException {
+		ArrayList<HashMap<String, Object>> list = new ArrayList<>();
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "java1234");
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT q.num, q.title, q.startdate, q.enddate, t.cnt FROM question q INNER JOIN (SELECT qnum, SUM(COUNT) cnt FROM item GROUP BY qnum) t ON q.num = t.qnum";
+		stmt = conn.prepareStatement(sql);
+		rs = stmt.executeQuery();
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("num", rs.getInt("num"));
+			m.put("title", rs.getString("title"));
+			m.put("startdate", rs.getString("startdate"));
+			m.put("enddate", rs.getString("enddate"));
+			m.put("cnt", rs.getInt("cnt"));
+			list.add(m);
+		}
+		
+		return list;
+	}
+	*/
+	
+	
+	
 }
