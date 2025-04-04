@@ -43,18 +43,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>pollList</title>
+	<meta charset="UTF-8">
+	<title>pollList</title>
+	<!-- CSS 스타일 정의
+	<style>
+		th {color:orange;} 
+		#one {color:red;} - id
+		.two {color:green;} - class
+		.three {background-color: powderblue;} - class는 두개이상 설정가능 ex) class="two three"
+	</style>
+	 -->
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<h1>설문 리스트</h1>
-	<table border="1">
+	<table class="table table-striped table-bordered">
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
 			<th>시작일</th>
 			<th>종료일</th><!-- 투표현황(몇명 추가하기) -->
-			<th>투표현황</th>
+			<th>투표현황(타입)</th>
 			<th>투표</th>
 			<th>삭제</th>
 			<th>수정</th>
@@ -71,7 +84,19 @@
 					<td><%=q.getTitle()%></td>
 					<td><%=q.getStartdate()%></td>
 					<td><%=q.getEnddate()%></td>
-					<td><%=totalCount%></td>
+					<td><%=totalCount%>(
+					<%
+						if(q.getType() == 1) {
+					%>
+							복수투표가능
+					<%
+						} else {
+					%>
+							복수투표불가	
+					<%
+						}
+					%>)
+					</td>
 					<td>
 					<%
 						Date startDate = sdf.parse(q.getStartdate());
@@ -86,7 +111,7 @@
 					<%
 						} else {
 					%>
-							<a href="">투표 하기</a>
+							<a href="/poll/updateItemForm.jsp?qnum=<%=q.getNum()%>">투표 하기</a>
 					<%
 						}
 					%>
@@ -95,7 +120,7 @@
                     <%
                         if (totalCount == 0) {
                     %>
-                            <a href="/poll/deletePollForm.jsp?num=<%=q.getNum()%>">삭제</a>
+                            <a href="/poll/deletePollAction.jsp?num=<%=q.getNum()%>" class="btn btn-danger">삭제</a>
                     <%
                         } else {
                     %>
@@ -104,29 +129,37 @@
                         }
                     %>
                     </td>
-					<td><a href="/poll/updatePollForm.jsp?num=<%=q.getNum()%>">수정하기</a></td>
+					<td><a href="/poll/updatePollForm.jsp?qnum=<%=q.getNum()%>">수정하기</a></td>
 					<td>
 					<%
 						if(endDate.before(today)) {
 					%>
-							<a href="">종료일 수정</a>
+							종료일 수정 불가(투표종료)
 					<%
 						} else {
 					%>
-							종료일 수정 불가	
+							<form action="/poll/updateEnddate.jsp?num=<%=q.getNum()%>">
+							<input type="hidden" name = "num" value="<%=q.getNum()%>">
+							<input type="date" name = "enddate" value="<%=q.getEnddate()%>">
+							<button type="submit">수정하기</button>
+							</form>
 					<%
 						}
 					%>
 					</td>
 					<td>
 					<%
-						if(endDate.before(today)) {
+						if(endDate.after(today) && startDate.before(today)) {
 					%>
-							<a href="">결과보기</a>
+							투표 종료x
+					<%
+						} else if(startDate.after(today)){
+					%>
+							투표 시작x
 					<%
 						} else {
 					%>
-							투표 완료X	
+							<a href="/poll/questionOneResult.jsp?qnum=<%=q.getNum()%>" class="two three">결과보기</a>
 					<%
 						}
 					%>

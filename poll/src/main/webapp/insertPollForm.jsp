@@ -3,14 +3,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>insertPollForm</title>
 </head>
 <body>
+	<div>
+	<jsp:include page="/inc/nav.jsp"></jsp:include>
+	</div>
 	<h1>투표 프로그램</h1>
 	<hr>
 	<h2>설문 작성</h2>
 	<form method="post" action="/poll/insertPollAction.jsp">
-		<table border="1">
+		<table class="table table-striped table-bordered">
 			<tr>
 				<td>질문</td>
 				<td colspan="2">

@@ -90,13 +90,12 @@ public class QuestionDao {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;
 		PreparedStatement stmt1 = null;
-		PreparedStatement stmt2 = null;
-		String sql1 = "delete from item where qnum = ?";
+		String sql1 = "delete from question where num = ?";
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "java1234");
 		stmt1 = conn.prepareStatement(sql1);
-		
-		
-		
+		stmt1.setInt(1, num);
+		stmt1.executeUpdate();
+		    
 	}
 	
 	
@@ -104,16 +103,28 @@ public class QuestionDao {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		String sql = "update question set title = ?, startdate = ?, enddate = ? where num = ?";
+		String sql = "update question set title = ?, startdate = ?, enddate = ?, type = ? where num = ?";
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "java1234");
 		stmt = conn.prepareStatement(sql);
 		stmt.setString(1, q.getTitle());
 		stmt.setString(2, q.getStartdate());
 		stmt.setString(3, q.getEnddate());
-		stmt.setInt(4, q.getNum());
+		stmt.setInt(4, q.getType());
+		stmt.setInt(5, q.getNum());
 		stmt.executeUpdate();
 	}
 	
+	public void updateEnddate(String enddate, int qnum) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		String sql = "update question set enddate = ? where num = ?";
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "java1234");
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, enddate);
+		stmt.setInt(2, qnum);
+		stmt.executeUpdate();
+	}
 	
 	public Question selectQuestion(int num) throws ClassNotFoundException, SQLException {
 		Question question = new Question();
@@ -123,12 +134,13 @@ public class QuestionDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select title, startdate, enddate, type from question where num = ?";
+		String sql = "select num, title, startdate, enddate, type from question where num = ?";
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "java1234");
 		stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, num);
 		rs = stmt.executeQuery();
 		rs.next();
+		question.setNum(rs.getInt("num"));
 		question.setTitle(rs.getString("title"));
 		question.setStartdate(rs.getString("startdate"));
 		question.setEnddate(rs.getString("enddate"));
