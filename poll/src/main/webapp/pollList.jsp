@@ -60,6 +60,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+	<div>
+		<jsp:include page="/inc/nav.jsp"></jsp:include>
+	</div>
 	<h1>설문 리스트</h1>
 	<table class="table table-striped table-bordered">
 		<tr>
