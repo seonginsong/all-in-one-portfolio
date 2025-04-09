@@ -31,6 +31,7 @@ public class BoardDao {
 			b = new Board();
 			b.setNum(rs.getInt("num"));
 			b.setName(rs.getString("name"));
+			b.setPass(rs.getString("pass"));
 			b.setSubject(rs.getString("subject"));
 			b.setContent(rs.getString("content"));
 			b.setPos(rs.getInt("pos"));

@@ -67,6 +67,13 @@
 						<%
 							}
 						%>
+						<%
+							if(b.getDepth()>0) {
+						%>
+								└						
+						<%		
+							}
+						%>
 					<a href="/poll/board/boardOne.jsp?num=<%=b.getNum()%>"><%=b.getSubject()%></a></td>
 					<td><%=b.getName()%></td>
 				</tr>

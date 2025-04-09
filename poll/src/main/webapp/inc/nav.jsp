@@ -6,4 +6,7 @@
 	|
 	<a href="/poll//board/boardList.jsp">계층형 게시판</a>
 	<a href="/poll//board/insertBoardForm.jsp">새글 입력</a>
+	|
+	<a href="/poll//imageBoard/imageList.jsp">이미지 게시판</a>
+	<a href="/poll//imageBoard/insertImageForm.jsp">이미지 입력</a>
 </nav>

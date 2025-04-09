@@ -6,8 +6,17 @@
 	String pass = request.getParameter("pass");
 	System.out.println(pass);
 	BoardDao boardDao = new BoardDao();
-
-	boardDao.deleteBoard(num, pass);
-	response.sendRedirect("/poll/board/boardList.jsp");
+	
+	
+	Board b = boardDao.selectBoardOne(num);
+	System.out.println("b.getPass() :"+b.getPass());
+	if(!b.getPass().equals(pass)) {
+		response.sendRedirect("/poll/board/deleteBoardForm.jsp?num="+num+"&msg=PasswordError");
+		return;
+	} else {
+		boardDao.deleteBoard(num, pass);
+		response.sendRedirect("/poll/board/boardList.jsp");
+	}
+	
 	
 %>
