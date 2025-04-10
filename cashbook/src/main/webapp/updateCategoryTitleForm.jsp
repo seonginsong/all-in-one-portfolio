@@ -31,6 +31,13 @@
 	<jsp:include page="/inc/nav.jsp"></jsp:include>
 	</div>
 	<h1>Category Title 수정</h1>
+		<%
+			if(request.getParameter("umsg") != null) {
+		%>		
+			<div>Title이 이미 존재해서 변경이 불가능합니다.</div>
+		<%
+			}
+		%>
 	<form action="/cashbook/updateCategoryTitleAction.jsp">
 		<table border="1">
 			<tr>

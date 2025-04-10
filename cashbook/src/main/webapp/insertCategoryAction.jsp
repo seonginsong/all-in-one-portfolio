@@ -6,10 +6,18 @@
 	String title = request.getParameter("title");
 	
 	CategoryDao categoryDao = new CategoryDao();
-	Category c = new Category();
-	c.setKind(kind);
-	c.setTitle(title);
+	int ckCnt = categoryDao.selectCntKindTitle(title, kind);
 	
-	categoryDao.insertCategory(c);
-	response.sendRedirect("/cashbook/categoryList.jsp");
+	
+	
+	if(ckCnt > 0) {
+		response.sendRedirect("/cashbook/insertCategoryForm.jsp?umsg=SameTitle");
+	} else {
+		Category c = new Category();
+		c.setKind(kind);
+		c.setTitle(title);
+		
+		categoryDao.insertCategory(c);
+		response.sendRedirect("/cashbook/categoryList.jsp");
+	}
 %>

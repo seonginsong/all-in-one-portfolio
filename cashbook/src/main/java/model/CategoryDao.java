@@ -126,4 +126,24 @@ public class CategoryDao {
 		
 		conn.close();
 	}
+	// 제목과 kind가 동시에 같은지 확인
+	public int selectCntKindTitle(String title, String kind) throws ClassNotFoundException, SQLException {
+		int cnt = 0;
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cashbook", "root", "java1234");
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		String sql = "select count(*) cnt from category where title = ? and kind = ?";
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, title);
+		stmt.setString(2, kind);
+		rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			cnt = rs.getInt("cnt");
+		}
+		conn.close();
+		return cnt;
+	}
 }
