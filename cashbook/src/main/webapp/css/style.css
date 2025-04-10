@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* style.css - 공통 스타일 */
+/* 공통 스타일 */
 body {
   font-family: "Segoe UI", sans-serif;
   background-color: #f4f6f9;
@@ -26,17 +26,13 @@ form {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  max-width: 400px;
+  max-width: 960px;
   margin: 20px auto;
 }
 
-form div {
-  margin-bottom: 15px;
-}
-
 input[type="text"],
-input[type="password"] {
-  width: 100%;
+input[type="password"],
+select {
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ccc;
@@ -45,22 +41,26 @@ input[type="password"] {
 }
 
 button {
-  padding: 10px 20px;
+  padding: 8px 16px;
   font-size: 14px;
   background-color: #3498db;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  min-width: 80px;
+  white-space: nowrap;
 }
 button:hover {
   background-color: #2980b9;
 }
 
+/* 테이블 */
 table {
   width: 100%;
+  max-width: 960px;
+  margin: 20px auto;
   border-collapse: collapse;
-  margin-top: 20px;
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   border-radius: 8px;
@@ -69,5 +69,46 @@ table {
 table th, table td {
   padding: 12px 16px;
   border: 1px solid #ddd;
-  text-align: left;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* 삭제 버튼 */
+button.delete-btn {
+  background-color: #e74c3c;
+}
+button.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* select 전용 */
+select {
+  background-color: #fff;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%225%22%20viewBox%3D%220%200%2010%205%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%205%205-5z%22%20fill%3D%22%23333%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 5px;
+  cursor: pointer;
+}
+
+/* 검색 바 정렬용 */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 960px;
+  margin: 0 auto 20px;
+}
+.search-bar input[type="text"] {
+  width: 200px;
+}
+.search-bar select {
+  width: 100px;
+}
+.pagination {
+  text-align: center;
+  margin-top: 20px;
 }

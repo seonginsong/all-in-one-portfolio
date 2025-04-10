@@ -14,12 +14,11 @@
 <meta charset="UTF-8">
 <title></title>
 <link rel="stylesheet" href="/cashbook/css/style.css">
+</head>
+<body>
 	<div>
 	<jsp:include page="/inc/nav.jsp"></jsp:include>
 	</div>
-</head>
-<body>
-	<a href="/cashbook/logoutAction.jsp">로그아웃</a> | <a href="updateAdminPwForm.jsp">비밀번호 변경</a>
 	<h1><%=adminId%>님 환영합니다</h1>
 	1. <a href="/cashbook/categoryList.jsp">카테고리 목록</a>
 	2. <a href="">월별 cash 목록</a>
