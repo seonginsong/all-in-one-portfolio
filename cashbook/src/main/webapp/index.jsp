@@ -14,6 +14,9 @@
 <meta charset="UTF-8">
 <title></title>
 <link rel="stylesheet" href="/cashbook/css/style.css">
+	<div>
+	<jsp:include page="/inc/nav.jsp"></jsp:include>
+	</div>
 </head>
 <body>
 	<a href="/cashbook/logoutAction.jsp">로그아웃</a> | <a href="updateAdminPwForm.jsp">비밀번호 변경</a>

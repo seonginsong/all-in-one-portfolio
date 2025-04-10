@@ -30,6 +30,8 @@ public class CategoryDao {
 		return cnt;
 	} 
 	
+	// 리스트 뽑기
+	
 	// category 추가
 	public void insertCategory(Category c) throws ClassNotFoundException, SQLException {
 		int row = 0;
