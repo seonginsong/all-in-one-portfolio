@@ -25,8 +25,8 @@ public class AdminDao {
 		
 		if(rs.next()) {
 			a = new Admin();
-			a.setAdmin_id(rs.getString("admin_id"));
-			a.setAdmin_pw(rs.getString("admin_pw"));
+			a.setAdminId(rs.getString("admin_id"));
+			a.setAdminPw(rs.getString("admin_pw"));
 		}
 		return a;
 	}

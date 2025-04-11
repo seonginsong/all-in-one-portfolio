@@ -2,8 +2,8 @@
 <%@ page import="model.*" %>
 <%@ page import="dto.*" %>
 <%
-	String id = request.getParameter("admin_id");
-	String pw = request.getParameter("admin_pw");
+	String id = request.getParameter("adminId");
+	String pw = request.getParameter("adminPw");
 	System.out.println(id);
 	System.out.println(pw);
 	

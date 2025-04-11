@@ -10,7 +10,7 @@
 	
 	AdminDao adminDao = new AdminDao();
 	Admin a = adminDao.selectAdmin(adminId);
-	if(nowPw.equals(a.getAdmin_pw()) && nextPw1.equals(nextPw2) && !nowPw.equals(nextPw1)) {
+	if(nowPw.equals(a.getAdminPw()) && nextPw1.equals(nextPw2) && !nowPw.equals(nextPw1)) {
 		adminDao.updatePw(nextPw1, adminId);
 		session.invalidate();
 		response.sendRedirect("/cashbook/loginForm.jsp");

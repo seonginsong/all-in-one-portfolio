@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	String admin_id = "admin";
+	String adminId = "admin";
 %>
 <!DOCTYPE html>
 <html>
@@ -21,10 +21,10 @@
 	<form action="/cashbook/loginAction.jsp">
 		<table border="1">
 			<tr>
-				<th>아이디 : <input type="text" name="admin_id" value="<%=admin_id%>" readonly></th>
+				<th>아이디 : <input type="text" name="adminId" value="<%=adminId%>" readonly></th>
 			</tr>
 			<tr>
-				<th>비밀번호 : <input type="password" name="admin_pw"> <button type="submit">로그인</button></th>
+				<th>비밀번호 : <input type="password" name="adminPw"> <button type="submit">로그인</button></th>
 			</tr>
 		</table>
 	</form>

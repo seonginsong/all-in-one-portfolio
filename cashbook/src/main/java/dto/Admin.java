@@ -1,22 +1,22 @@
 package dto;
 
 public class Admin {
-	private String admin_id;
-	private String admin_pw;
-	public String getAdmin_id() {
-		return admin_id;
+	private String adminId;
+	private String adminPw;
+	public String getAdminId() {
+		return adminId;
 	}
-	public void setAdmin_id(String admin_id) {
-		this.admin_id = admin_id;
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
 	}
-	public String getAdmin_pw() {
-		return admin_pw;
+	public String getAdminPw() {
+		return adminPw;
 	}
-	public void setAdmin_pw(String admin_pw) {
-		this.admin_pw = admin_pw;
+	public void setAdminPw(String adminPw) {
+		this.adminPw = adminPw;
 	}
 	@Override
 	public String toString() {
-		return "Admin [admin_id=" + admin_id + ", admin_pw=" + admin_pw + "]";
+		return "Admin [adminId=" + adminId + ", adminPw=" + adminPw + "]";
 	}
 }

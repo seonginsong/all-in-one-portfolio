@@ -1,15 +1,23 @@
 package dto;
 
 public class Category {
-	private int category_no;
+	/*public Category() {
+		super(); // Object();
+		// new 생성자 : new heap 영역에 this 필드를 생성하고 초기화
+		this.category_no = 0;
+		this.kind = null;
+		this.title = null;
+		this.createdate = null;
+	}*/
+	private int categoryNo;
 	private String kind;
 	private String title;
 	private String createdate;
-	public int getCategory_no() {
-		return category_no;
+	public int getCategoryNo() {
+		return categoryNo;
 	}
-	public void setCategory_no(int category_no) {
-		this.category_no = category_no;
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
 	}
 	public String getKind() {
 		return kind;
@@ -31,7 +39,7 @@ public class Category {
 	}
 	@Override
 	public String toString() {
-		return "Category [category_no=" + category_no + ", kind=" + kind + ", title=" + title + ", createdate="
+		return "Category [categoryNo=" + categoryNo + ", kind=" + kind + ", title=" + title + ", createdate="
 				+ createdate + "]";
 	}
 }

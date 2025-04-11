@@ -72,12 +72,12 @@
 				for(Category c : list) {
 			%>
 					<tr>
-						<td><%=c.getCategory_no()%></td>
+						<td><%=c.getCategoryNo()%></td>
 						<td><%=c.getKind()%></td>
 						<td><%=c.getTitle()%></td>
 						<td><%=c.getCreatedate()%></td>
-						<td><button type="button" onclick="location.href='/cashbook/updateCategoryTitleForm.jsp?category_no=<%=c.getCategory_no()%>'">변경하기</button></td>
-						<td><button type="button" class="delete-btn" onclick="location.href='/cashbook/deleteCategory.jsp?category_no=<%=c.getCategory_no()%>'">삭제하기</button>
+						<td><button type="button" onclick="location.href='/cashbook/updateCategoryTitleForm.jsp?category_no=<%=c.getCategoryNo()%>'">변경하기</button></td>
+						<td><button type="button" class="delete-btn" onclick="location.href='/cashbook/deleteCategory.jsp?category_no=<%=c.getCategoryNo()%>'">삭제하기</button>
 						</td>
 					</tr>
 			<%	
@@ -93,7 +93,7 @@
 			<input type="text" name="searchWord" value="<%=searchWord%>">
 			<button type="submit">검색</button>
 		</form>
-		<div class="pagination">
+		<div style="text-align: center;">
 			<% 
 				if(currentPage > 1) { 
 			%>

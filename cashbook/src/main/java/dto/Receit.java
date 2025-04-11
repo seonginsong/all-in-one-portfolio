@@ -1,14 +1,14 @@
 package dto;
 
 public class Receit {
-	private int cash_no;
+	private int cashNo;
 	private String filename;
 	private String createdate;
-	public int getCash_no() {
-		return cash_no;
+	public int getCashNo() {
+		return cashNo;
 	}
-	public void setCash_no(int cash_no) {
-		this.cash_no = cash_no;
+	public void setCashNo(int cashNo) {
+		this.cashNo = cashNo;
 	}
 	public String getFilename() {
 		return filename;
@@ -24,6 +24,6 @@ public class Receit {
 	}
 	@Override
 	public String toString() {
-		return "Receit [cash_no=" + cash_no + ", filename=" + filename + ", createdate=" + createdate + "]";
+		return "Receit [cashNo=" + cashNo + ", filename=" + filename + ", createdate=" + createdate + "]";
 	}
 }

@@ -1,25 +1,41 @@
 package dto;
 
 public class Cash {
-	private int cash_no;
-	private int category_no;
+	private int cashNo;
+	private int categoryNo;
 	private String cash_date;
 	private int amount;
 	private String memo;
 	private String color;
 	private String createdate;
 	private String updatedate;
-	public int getCash_no() {
-		return cash_no;
+	private String title;
+	private String kind;
+
+	public String getKind() {
+	    return kind;
 	}
-	public void setCash_no(int cash_no) {
-		this.cash_no = cash_no;
+	public void setKind(String kind) {
+	    this.kind = kind;
 	}
-	public int getCategory_no() {
-		return category_no;
+
+	public String getTitle() {
+	    return title;
 	}
-	public void setCategory_no(int category_no) {
-		this.category_no = category_no;
+	public void setTitle(String title) {
+	    this.title = title;
+	}
+	public int getCashNo() {
+		return cashNo;
+	}
+	public void setCashNo(int cashNo) {
+		this.cashNo = cashNo;
+	}
+	public int getCategoryNo() {
+		return categoryNo;
+	}
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
 	}
 	public String getCash_date() {
 		return cash_date;
@@ -59,7 +75,7 @@ public class Cash {
 	}
 	@Override
 	public String toString() {
-		return "Cash [cash_no=" + cash_no + ", category_no=" + category_no + ", cash_date=" + cash_date + ", amount="
+		return "Cash [cashNo=" + cashNo + ", categoryNo=" + categoryNo + ", cash_date=" + cash_date + ", amount="
 				+ amount + ", memo=" + memo + ", color=" + color + ", createdate=" + createdate + ", updatedate="
 				+ updatedate + "]";
 	}

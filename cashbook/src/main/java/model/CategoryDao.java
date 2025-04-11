@@ -50,7 +50,7 @@ public class CategoryDao {
 		
 		while(rs.next()) {
 			Category c = new Category();
-			c.setCategory_no(rs.getInt("category_no"));
+			c.setCategoryNo(rs.getInt("category_no"));
 			c.setKind(rs.getString("kind"));
 			c.setTitle(rs.getString("title"));
 			c.setCreatedate(rs.getString("createdate"));
@@ -58,6 +58,28 @@ public class CategoryDao {
 		}
 		return list;
 	}
+	
+	// kind별로 뽑기	
+	public ArrayList<Category> selectCategoryListByKind(String kind) throws ClassNotFoundException, SQLException {
+		ArrayList<Category> list = new ArrayList<>();
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "select category_no, title from category where kind = ?";
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cashbook", "root", "java1234");
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, kind);
+		rs = stmt.executeQuery();
+		while(rs.next()) {
+			Category c = new Category();
+			c.setCategoryNo(rs.getInt("category_no"));
+			c.setTitle(rs.getString("title"));
+			list.add(c);
+		}
+		return list;
+	}
+	
 	//하나 뽑기
 	public Category selectCategoryOne(int cgno) throws SQLException, ClassNotFoundException {
 		Category c = null;
