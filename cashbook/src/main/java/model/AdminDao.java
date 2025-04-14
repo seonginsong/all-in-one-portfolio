@@ -28,6 +28,7 @@ public class AdminDao {
 			a.setAdminId(rs.getString("admin_id"));
 			a.setAdminPw(rs.getString("admin_pw"));
 		}
+		conn.close();
 		return a;
 	}
 	
@@ -52,6 +53,7 @@ public class AdminDao {
 				loginOk = 0;
 			}
 		}
+		conn.close();
 		return loginOk;
 	}
 	
@@ -66,5 +68,6 @@ public class AdminDao {
 		stmt.setString(1, nextPw1);
 		stmt.setString(2, id);
 		stmt.executeUpdate();
+		conn.close();
 	}
 }

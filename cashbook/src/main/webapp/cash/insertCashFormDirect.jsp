@@ -3,8 +3,6 @@
 <%@page import="model.CategoryDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	// dateList.jsp -> 수입/지출 입력(날짜값) ->
-	String cashDate = request.getParameter("cashdate");
 
 	// insertCashForm.jsp -> kind 선택(String kind)
 	String kind = request.getParameter("kind");
@@ -32,8 +30,14 @@
 	<jsp:include page="/inc/nav.jsp"></jsp:include>
 	</div>
 	<h1>수입/지출 이력 추가</h1>
-	<form method="post" action="/cashbook/cash/insertCashForm.jsp?cashdate=<%=cashDate%>">
-		<input type="hidden" name="cashDate" value="<%=cashDate%>">
+	<%
+		if(request.getParameter("msg") != null) {
+	%>
+			입력값이 없는 항목이 존재합니다.
+	<%
+		}
+	%>
+	<form method="post" action="/cashbook/cash/insertCashFormDirect.jsp">
 		kind
 		<select name="kind">
 			<option value="" <%= (kind == null || kind.equals("")) ? "selected" : "" %>>:::선택:::</option>
@@ -45,7 +49,7 @@
 	
 	
 	<form method="post" action="/cashbook/cash/insertCashAction.jsp">
-		cashDate : <input type="text" name="cashDate" value="<%=cashDate%>" readonly>
+		cashDate : <input type="date" name="cashDate">
 		category : 
 		<select name="category_no">
 		<%

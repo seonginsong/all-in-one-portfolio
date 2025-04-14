@@ -56,6 +56,7 @@ public class CategoryDao {
 			c.setCreatedate(rs.getString("createdate"));
 			list.add(c);
 		}
+		conn.close();
 		return list;
 	}
 	
@@ -77,6 +78,7 @@ public class CategoryDao {
 			c.setTitle(rs.getString("title"));
 			list.add(c);
 		}
+		conn.close();
 		return list;
 	}
 	
@@ -99,6 +101,7 @@ public class CategoryDao {
 			c.setTitle(rs.getString("title"));
 			c.setCreatedate(rs.getString("createdate"));
 		}
+		conn.close();
 		return c;
 	}
 	

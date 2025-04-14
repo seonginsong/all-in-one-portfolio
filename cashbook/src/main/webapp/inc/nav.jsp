@@ -8,8 +8,8 @@
 	<a href="/cashbook/insertCategoryForm.jsp">카테고리추가</a>
 	|
 	<a href="/cashbook/monthList.jsp">월별 리스트</a>
-	<a href="">새글 입력</a>
+	<a href="/cashbook/cash/insertCashFormDirect.jsp">Cash 추가</a>
 	|
-	<a href="">이미지 게시판</a>
-	<a href="">이미지 입력</a>
+	<a href="">ㅇ 게시판</a>
+	<a href="">영수증 입력</a>
 </nav>

@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="dto.Cash"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.CashDao"%>
@@ -20,6 +21,15 @@
 	int sum1 = cashDao.selectSumAmountByDate(y, m, d, "수입");
 	int sum2 = cashDao.selectSumAmountByDate(y, m, d, "지출");
 	int sum3 = cashDao.selectSumAmountByDate(y, m, d, "");
+	
+	//넘길 cashdate 값
+	String cashdate = y+"-"+m+"-"+d;
+	System.out.println("cashdate : "+cashdate);
+	
+	DecimalFormat df = new DecimalFormat("###,###");
+	String sumPlus = df.format(sum1);
+	String sumMinus = df.format(sum2);
+	String sumAll = df.format(sum3);
 %>
 <!DOCTYPE html>
 <html>
@@ -33,9 +43,9 @@
 	<jsp:include page="/inc/nav.jsp"></jsp:include>
 	</div>
 	<h1><%=y%>년<%=m%>월<%=d%>일 Date List</h1>
-	수입 : <%=sum1%>원
-	지출 : <%=sum2%>원
-	총합 : <%=sum3%>원
+	수입 : <%=sumPlus%>원
+	지출 : <%=sumMinus%>원
+	총합 : <%=sumAll%>원
 	<table border="1">
 			<tr>
 				<th>cash no</th>
@@ -57,8 +67,8 @@
 						<td><%=c.getAmount()%>원</td>
 						<td><%=c.getMemo()%></td>
 						<td><input type="color" value="<%=c.getColor()%>" disabled></button></td>
-						<td><button type="button" onclick="location.href='/cashbook/updateCashForm.jsp?cashNo=<%=c.getCashNo()%>'">변경하기</button></td>
-						<td><button type="button" class="delete-btn" onclick="location.href='/cashbook/deleteCash.jsp?cashNo=<%=c.getCashNo()%>'">삭제하기</button>
+						<td><button type="button" onclick="location.href='/cashbook/cash/updateCashForm.jsp?cashNo=<%=c.getCashNo()%>&y=<%=y%>&m=<%=m%>&d=<%=d%>'">변경하기</button></td>
+						<td><button type="button" class="delete-btn" onclick="location.href='/cashbook/cash/deleteCash.jsp?cashNo=<%=c.getCashNo()%>&y=<%=y%>&m=<%=m%>&d=<%=d%>'">삭제하기</button>
 						</td>
 					</tr>
 			<%	
@@ -74,7 +84,7 @@
 				<option value="수입" <%= kind.equals("수입") ? "selected" : "" %>>수입</option>
 				<option value="지출" <%= kind.equals("지출") ? "selected" : "" %>>지출</option>
 			</select>
-			<button type="submit">검색</button><a href="/cashbook/cash/insertCashForm.jsp?y=<%=y%>&m=<%=m%>&d=<%=d%>">추가</a>
+			<button type="submit">검색</button><a href="/cashbook/cash/insertCashForm.jsp?cashdate=<%=cashdate%>">추가</a>
 		</form>
 </body>
 </html>

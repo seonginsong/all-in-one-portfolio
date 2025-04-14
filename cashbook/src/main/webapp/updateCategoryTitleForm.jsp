@@ -38,6 +38,13 @@
 		<%
 			}
 		%>
+		<%
+			if(request.getParameter("msg") != null) {
+		%>		
+			<div>입력값이 없습니다.</div>
+		<%
+			}
+		%>
 	<form action="/cashbook/updateCategoryTitleAction.jsp">
 		<table border="1">
 			<tr>

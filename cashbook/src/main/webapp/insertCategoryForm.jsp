@@ -27,6 +27,13 @@
 		<%
 			}
 		%>
+		<%
+			if(request.getParameter("msg") != null) {
+		%>		
+			<div>입력을 하지 않았습니다.</div>
+		<%
+			}
+		%>
 	<form action="/cashbook/insertCategoryAction.jsp">
 		<table border="1">
 			<tr>

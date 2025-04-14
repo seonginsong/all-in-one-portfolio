@@ -3,7 +3,7 @@ package dto;
 public class Cash {
 	private int cashNo;
 	private int categoryNo;
-	private String cash_date;
+	private String cashDate;
 	private int amount;
 	private String memo;
 	private String color;
@@ -37,11 +37,11 @@ public class Cash {
 	public void setCategoryNo(int categoryNo) {
 		this.categoryNo = categoryNo;
 	}
-	public String getCash_date() {
-		return cash_date;
+	public String getCashDate() {
+		return cashDate;
 	}
-	public void setCash_date(String cash_date) {
-		this.cash_date = cash_date;
+	public void setCashDate(String cashDate) {
+		this.cashDate = cashDate;
 	}
 	public int getAmount() {
 		return amount;
@@ -75,7 +75,7 @@ public class Cash {
 	}
 	@Override
 	public String toString() {
-		return "Cash [cashNo=" + cashNo + ", categoryNo=" + categoryNo + ", cash_date=" + cash_date + ", amount="
+		return "Cash [cashNo=" + cashNo + ", categoryNo=" + categoryNo + ", cash_date=" + cashDate + ", amount="
 				+ amount + ", memo=" + memo + ", color=" + color + ", createdate=" + createdate + ", updatedate="
 				+ updatedate + "]";
 	}

@@ -102,7 +102,7 @@
 						<%
 								for (Cash c : list) {
 									// 날짜에서 일(day)만 추출해서 비교
-									int day = Integer.parseInt(c.getCash_date().substring(8, 10)); // "YYYY-MM-DD"
+									int day = Integer.parseInt(c.getCashDate().substring(8, 10)); // "YYYY-MM-DD"
 									if(day == d) {
 						%>
 										<div class="cash-item" style="color:<%=c.getColor()%>"><%=c.getKind()%>-<%=c.getTitle()%> : <%=c.getAmount()%>원</div>
@@ -118,7 +118,7 @@
 			<%		
 					if(i%7==0) {
 			%>
-						<tr></tr>		
+						</tr><tr>		
 			<%			
 					}
 				}

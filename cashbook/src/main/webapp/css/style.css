@@ -31,6 +31,7 @@ form {
 }
 
 input[type="text"],
+input[type="date"],
 input[type="password"],
 select {
   padding: 10px;
@@ -38,8 +39,15 @@ select {
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
+  width : 150px;
 }
-
+input[type="number"] {
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+}
 button {
   padding: 8px 16px;
   font-size: 14px;
