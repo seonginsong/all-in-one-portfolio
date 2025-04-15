@@ -9,7 +9,4 @@
 	|
 	<a href="/cashbook/monthList.jsp">월별 리스트</a>
 	<a href="/cashbook/cash/insertCashFormDirect.jsp">Cash 추가</a>
-	|
-	<a href="">ㅇ 게시판</a>
-	<a href="">영수증 입력</a>
 </nav>

@@ -34,7 +34,7 @@
 	int m = Integer.parseInt(arr[1]);
 	int d = Integer.parseInt(arr[2]);
 	
-	//cashDao.insertCash(c);
+	cashDao.updateCash(categoryNo, cashDate, amount, memo, color, cashNo);
 	response.sendRedirect("/cashbook/dateList.jsp?y="+y+"&m="+m+"&d="+d);
 	
 %>

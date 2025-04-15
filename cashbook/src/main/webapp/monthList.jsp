@@ -5,6 +5,13 @@
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	String adminId = (String)session.getAttribute("loginId");
+	
+	if(adminId == null) { //로그아웃 상태라면
+		response.sendRedirect("/cashbook/loginForm.jsp");
+		//로그인 페이지로 리다이렉트
+		return;
+	}
 	// 현재 월의 기본값 설정(1일)
 	Calendar firstDate = Calendar.getInstance();
 	firstDate.set(Calendar.DATE, 1);

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.Cash;
-import dto.Category;
 
 
 public class CashDao {
@@ -131,7 +130,7 @@ public class CashDao {
 		conn.close();
 		return sum;
 	}
-	// cash 추가하기 위한 kind의 categoryno 구하는 메서드
+	// cash 추가하기 위한 kind,title의 categoryno 구하는 메서드
 	public int selectCategoryNoByCashKindTitle(String kind, String title) throws ClassNotFoundException, SQLException {
 		int cgno = 0;
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -195,6 +194,25 @@ public class CashDao {
 		stmt.setString(3, c.getMemo());
 		stmt.setString(4, c.getColor());
 		stmt.setInt(5, c.getCategoryNo());
+		stmt.executeUpdate();
+		conn.close();
+	}
+	
+	//update
+	public void updateCash(int categoryNo, String cashDate, int amount, String memo, String color, int cashNo) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cashbook", "root", "java1234");
+		
+		String sql = "update cash set category_no = ?, cash_date = ?, amount = ?, memo = ?, color = ? where cash_no = ?";
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, categoryNo);
+		stmt.setString(2, cashDate);
+		stmt.setInt(3, amount);
+		stmt.setString(4, memo);
+		stmt.setString(5, color);
+		stmt.setInt(6, cashNo);
 		stmt.executeUpdate();
 		conn.close();
 	}

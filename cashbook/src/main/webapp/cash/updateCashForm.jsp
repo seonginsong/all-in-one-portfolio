@@ -5,6 +5,14 @@
 <%@page import="model.CategoryDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	String adminId = (String)session.getAttribute("loginId");
+	
+	if(adminId == null) { //로그아웃 상태라면
+		response.sendRedirect("/cashbook/loginForm.jsp");
+		//로그인 페이지로 리다이렉트
+		return;
+	}
+
 	int cashNo = Integer.parseInt(request.getParameter("cashNo"));
 	
 	// insertCashForm.jsp -> kind 선택(String kind)
@@ -53,8 +61,40 @@
 	<form method="post" action="/cashbook/cash/updateCashForm.jsp?cashNo=<%=cashNo%>">
 		kind
 		<select name="kind">
-			<option value="수입" <%= "수입".equals(cs.getKind()) ? "selected" : "" %>>수입</option>
-			<option value="지출" <%= "지출".equals(cs.getKind()) ? "selected" : "" %>>지출</option>
+			<%
+				if(request.getParameter("kind") != null) {
+					if("수입".equals(request.getParameter("kind"))) {
+			%>
+					<option value="수입" selected>수입</option>
+			<%
+					} else {
+			%>
+					<option value="수입">수입</option>
+			<%
+					}
+				} else {
+			%>
+					<option value="수입" <%= "수입".equals(cs.getKind()) ? "selected" : "" %>>수입</option>
+			<%
+				}
+			%>
+			<%
+				if(request.getParameter("kind") != null) {
+					if("지출".equals(request.getParameter("kind"))) {
+			%>
+					<option value="지출" selected>지출</option>
+			<%
+					} else {
+			%>
+					<option value="지출">지출</option>
+			<%
+					}
+				} else {
+			%>
+					<option value="지출" <%= "지출".equals(cs.getKind()) ? "selected" : "" %>>지출</option>
+			<%
+				}
+			%>
 		</select>
 		<button type="submit">수입/지출 선택</button>
 	</form>
@@ -68,7 +108,16 @@
 				if(list != null) {
 					for(Category cg : list) {
 			%>
-						<option value="<%=cg.getCategoryNo()%>"><%=cg.getTitle()%></option>
+						<option value="<%=cg.getCategoryNo()%>"
+			<%
+							if(cg.getCategoryNo() == cs.getCategoryNo()) {
+			%>
+								selected
+			<%
+							} else {							
+							}
+			%>
+						><%=cg.getTitle()%></option>
 			<%	
 					}
 				}

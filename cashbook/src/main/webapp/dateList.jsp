@@ -4,6 +4,14 @@
 <%@page import="model.CashDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	String adminId = (String)session.getAttribute("loginId");
+	
+	if(adminId == null) { //로그아웃 상태라면
+		response.sendRedirect("/cashbook/loginForm.jsp");
+		//로그인 페이지로 리다이렉트
+		return;
+	}
+
 	int y = Integer.parseInt(request.getParameter("y"));
 	int m = Integer.parseInt(request.getParameter("m"));
 	int d = Integer.parseInt(request.getParameter("d"));
@@ -54,6 +62,7 @@
 				<th>amount</th>
 				<th>memo</th>
 				<th>color</th>
+				<th>상세보기</th>
 				<th>변경하기</th>
 				<th>삭제하기</th>
 			</tr>
@@ -67,6 +76,7 @@
 						<td><%=c.getAmount()%>원</td>
 						<td><%=c.getMemo()%></td>
 						<td><input type="color" value="<%=c.getColor()%>" disabled></button></td>
+						<td><a href="/cashbook/cash/cashOne.jsp?cashNo=<%=c.getCashNo()%>">자세히</a></td>
 						<td><button type="button" onclick="location.href='/cashbook/cash/updateCashForm.jsp?cashNo=<%=c.getCashNo()%>&y=<%=y%>&m=<%=m%>&d=<%=d%>'">변경하기</button></td>
 						<td><button type="button" class="delete-btn" onclick="location.href='/cashbook/cash/deleteCash.jsp?cashNo=<%=c.getCashNo()%>&y=<%=y%>&m=<%=m%>&d=<%=d%>'">삭제하기</button>
 						</td>

@@ -2,6 +2,7 @@
 <%@page import="model.CashDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	// 공백으로 제출시 오류 방지
 	if(request.getParameter("cashDate") == null || request.getParameter("memo") == null || request.getParameter("amount") == null || request.getParameter("category_no") == null ||
 	request.getParameter("cashDate").equals("") || request.getParameter("memo").equals("") || request.getParameter("amount").equals("") || request.getParameter("category_no").equals("")) {
 		response.sendRedirect("/cashbook/cash/insertCashFormDirect.jsp?msg=NoInsert");
