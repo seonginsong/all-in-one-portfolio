@@ -116,7 +116,7 @@
 	<div style="text-align: center">
 	<button type="button" onclick="location.href='/cashbook/cash/updateCashForm.jsp?cashNo=<%=c.getCashNo()%>&y=<%=y%>&m=<%=m%>&d=<%=d%>'">수정하기</button>
 	<button type="button" onclick="location.href='/cashbook/receit/insertReceitForm.jsp?cashNo=<%=c.getCashNo()%>&filename=<%=filename%>'">영수증추가</button>
-	<button type="button" class="delete-btn" onclick="location.href='/cashbook/receit/deleteReceit.jsp?cashNo=<%=c.getCashNo()%>'">영수증삭제</button>
+	<button type="button" class="delete-btn" onclick="location.href='/cashbook/receit/deleteReceit.jsp?cashNo=<%=c.getCashNo()%>&filename=<%=filename%>'">영수증삭제</button>
 	</div>
 </body>
 </html>

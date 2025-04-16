@@ -4,6 +4,8 @@
 <%
 	int cashNo = Integer.parseInt(request.getParameter("cashNo"));
 	String filename = request.getParameter("filename");
+	System.out.println(request.getParameter("cashNo"));
+	System.out.println(request.getParameter("filename"));
 	
 	// db 삭제
 	ReceitDao receitDao = new ReceitDao();

@@ -25,8 +25,9 @@
 	String originalName = part.getSubmittedFileName(); // one1.png
 	System.out.println("originalName : "+originalName);
 	
-	if(request.getParameter("receitFile") == null || cnt>0) {
+	if(request.getPart("receitFile") == null || cnt>0) {
 		response.sendRedirect("/cashbook/cash/cashOne.jsp?cashNo="+cashNo+"&nmsg=error");
+		System.out.println(cnt);
 	} else {
 	
 	// 1) 중복되지 않는 새로운 파일이름 생성 - java.util.UUID API 사용
