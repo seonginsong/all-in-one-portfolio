@@ -21,10 +21,12 @@
 	<form action="/cashbook/loginAction.jsp">
 		<table border="1">
 			<tr>
-				<th>아이디 : <input type="text" name="adminId" value="<%=adminId%>" readonly></th>
+				<th>아이디 : </th>
+				<td><input type="text" name="adminId" value="<%=adminId%>" readonly></td>
 			</tr>
 			<tr>
-				<th>비밀번호 : <input type="password" name="adminPw"> <button type="submit">로그인</button></th>
+				<th>비밀번호 : </th>
+				<td><input type="password" name="adminPw"> <button type="submit">로그인</button></td>
 			</tr>
 		</table>
 	</form>

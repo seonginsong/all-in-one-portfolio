@@ -112,7 +112,7 @@
 									int day = Integer.parseInt(c.getCashDate().substring(8, 10)); // "YYYY-MM-DD"
 									if(day == d) {
 						%>
-										<div class="cash-item" style="color:<%=c.getColor()%>"><%=c.getKind()%>-<%=c.getTitle()%> : <%=c.getAmount()%>원</div>
+										<div class="cash-item"><a href="/cashbook/cash/cashOne.jsp?cashNo=<%=c.getCashNo()%>" style="color:<%=c.getColor()%>"><%=c.getKind()%>-<%=c.getTitle()%> : <%=c.getAmount()%>원</a></div>
 						<%
 									}
 								}
