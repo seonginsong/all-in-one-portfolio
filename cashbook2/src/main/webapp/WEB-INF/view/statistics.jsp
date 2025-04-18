@@ -1,25 +1,4 @@
-<%@page import="java.text.DecimalFormat"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="dto.*" %>
-<%@ page import="model.*" %>
-<%
-	StaticDao staticDao = new StaticDao();
-	int allPlusSum = staticDao.selectStaticAll("수입");
-	int allMinusSum = staticDao.selectStaticAll("지출");
-	int year = 0;
-	if(request.getParameter("year") == null) {
-		year = 2025;
-	} else {
-		year = Integer.parseInt(request.getParameter("year"));
-	}
-	ArrayList<Static> yearList = staticDao.selectStaticByYear();
-	ArrayList<Static> monthList = staticDao.selectStaticByMonth();
-	ArrayList<Static> sList = staticDao.selectStaticBySYear(year);
-	
-	ArrayList<Integer> yearOptionList = staticDao.selectDistinctYears();
-	DecimalFormat df = new DecimalFormat("###,###");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,15 +20,15 @@
 	<table>
 		<tr>
 			<th>총 수입</th>
-			<td><%=df.format(allPlusSum)%>원</td>
+			<td><%=request.getAttribute("allPlusSum")%>원</td>
 		</tr>
 		<tr>
 			<th>총 지출</th>
-			<td><%=df.format(allMinusSum)%>원</td>
+			<td><%=request.getAttribute("allMinusSum")%>원</td>
 		</tr>
 		<tr>
 			<th>총 이익</th>
-			<td><%=df.format(allPlusSum - allMinusSum)%>원</td>
+			<td><%=request.getAttribute("allSum")%>원</td>
 		</tr>
 	</table>
 	</div>

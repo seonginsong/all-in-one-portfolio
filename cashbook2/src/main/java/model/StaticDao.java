@@ -40,7 +40,7 @@ public class StaticDao {
 		
 		String sql = "select year(cash_date), kind, sum(amount) from category ct"
 					+" inner join cash cs on ct.category_no = cs.category_no"
-					+" group by year(cash_date), ct.kind order by year(cash_date)";
+					+" group by year(cash_date), ct.kind order by year(cash_date) asc";
 		stmt = conn.prepareStatement(sql);
 		rs = stmt.executeQuery();
 		ArrayList<Static> list = new ArrayList<>();

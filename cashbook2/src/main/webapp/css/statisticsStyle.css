@@ -84,8 +84,43 @@ th {
   max-width: 700px; /* 테이블 전체 가로폭 제한 */
   margin: 0 auto;   /* 가운데 정렬 */
 }
+/* 전체 통계 레이아웃 flex 정렬 */
+.statistics-container {
+  display: flex;
+  justify-content: center;  /* space-between → center */
+  align-items: flex-start;
+  gap: 40px;  /* 요소 간 간격 */
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;  /* 중앙 정렬 */
+}
+
+
+/* 왼쪽 테이블 영역 */
+.left-tables {
+  flex: 1 1 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 오른쪽 테이블 영역 */
+.right-table {
+  flex: 1 1 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 반응형 고려 */
+@media (max-width: 960px) {
+  .statistics-container {
+    flex-direction: column;
+  }
+}
 
 /* 열 너비 조절 */
 th:nth-child(1), td:nth-child(1) { width: 50px; }  /* 년도 */
-th:nth-child(2), td:nth-child(2) { width: 40px; }  /* 분류 */
-th:nth-child(3), td:nth-child(3) { width: 90px; } /* 금액 */
+th:nth-child(2), td:nth-child(2) { width: 60px; }  /* 수입 */
+th:nth-child(3), td:nth-child(3) { width: 60px; } /* 지출 */
+th:nth-child(4), td:nth-child(4) { width: 90px; } /* 총액 */
