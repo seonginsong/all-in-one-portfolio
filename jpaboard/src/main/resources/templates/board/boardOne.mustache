@@ -15,25 +15,25 @@
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">Id</th>
+        <th scope="col">No</th>
         <th scope="col">Title</th>
         <th scope="col">Content</th>
     </tr>
     </thead>
     <tbody>
-    {{#article}}
+    {{#board}}
     <tr>
-        <th>{{id}}</th>
+        <th>{{no}}</th>
         <td>{{title}}</td>
         <td>{{content}}</td>
     </tr>
-    {{/article}}
+    {{/board}}
     </tbody>
 </table>
 
-<a href="/articles/edit?id={{article.id}}" class="btn btn-primary">Edit</a>
-<a href="/articles/delete?id={{article.id}}" class="btn btn-danger">Delete</a>
-<a href="/articles/index">Go to Article List</a>
+<a href="/board/modifyBoard?no={{board.no}}" class="btn btn-primary">Edit</a>
+<a href="/board/deleteBoard?no={{board.no}}" class="btn btn-danger">Delete</a>
+<a href="/board/boardList">Go to Board List</a>
 
 		<!-- footer.mustache include -->
 		{{>layouts/footer}}

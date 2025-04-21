@@ -10,9 +10,9 @@
 		<!-- header.mustache include -->
 		{{>layouts/header}}
 		
-		{{#article}}
-		<form class="container" action="/articles/update" method="post">
-		    <input name="id" type="hidden" value="{{id}}">
+		{{#board}}
+		<form class="container" action="/board/update" method="post">
+		    <input name="no" type="hidden" value="{{no}}">
 		    <div class="mb-3">
 		        <label class="form-label">제목</label>
 		        <input type="text" class="form-control" name="title" value="{{title}}">
@@ -23,7 +23,7 @@
 		    </div>
 		    <button type="submit" class="btn btn-primary">Submit</button>
 		</form>
-		{{/article}}
+		{{/board}}
 		
 
 		<!-- footer.mustache include -->

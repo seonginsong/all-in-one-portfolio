@@ -15,7 +15,7 @@
 	<table class="table">
 	    <thead>
 	    <tr>
-	        <th scope="col">Id</th>
+	        <th scope="col">No</th>
 	        <th scope="col">Title</th>
 	        <th scope="col">Content</th>
 	    </tr>
@@ -23,8 +23,8 @@
 	    <tbody>
 	    {{#list}}
 	        <tr>
-	            <th>{{id}}</th>
-	            <td><a href="/articles/show?id={{id}}">{{title}}</a></td>
+	            <th>{{no}}</th>
+	            <td><a href="/board/boardOne?no={{no}}">{{title}}</a></td>
 	            <td>{{content}}</td>
 	        </tr>
 	    {{/list}}
@@ -38,26 +38,26 @@
 	</div>
 	<div>
 		{{^list.isFirst}}
-			<a href="/articles/index?currentPage=0&word={{word}}">처음</a>
+			<a href="/board/boardList?currentPage=0&word={{word}}">처음</a>
 		{{/list.isFirst}}	
 		{{^list.isFirst}}
-			<a href="/articles/index?currentPage={{prevPage}}&word={{word}}">이전</a>
+			<a href="/board/boardList?currentPage={{prevPage}}&word={{word}}">이전</a>
 		{{/list.isFirst}}	
 		{{nextPage}}/{{list.getTotalPages}}
 		{{#list.hasNext}}
-			<a href="/articles/index?currentPage={{nextPage}}&word={{word}}">다음</a>
+			<a href="/board/boardList?currentPage={{nextPage}}&word={{word}}">다음</a>
 		{{/list.hasNext}}
 		{{#list.hasNext}}
-			<a href="/articles/index?currentPage={{lastPage}}&word={{word}}">마지막</a>
+			<a href="/board/boardList?currentPage={{lastPage}}&word={{word}}">마지막</a>
 		{{/list.hasNext}}
 	</div>
 
-	<form action="/articles/index" method="get">
+	<form action="/board/boardList" method="get">
 		<input type="text" name="word">
 		<button type="submit">입력</button>
 	</form>
 
-	<a href="/articles/new">New Article</a>
+	<a href="/board/addBoard">New Article</a>
 
 		<!-- footer.mustache include -->
 		{{>layouts/footer}}

@@ -6,18 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 @Controller
-public class HomeController {
-	@GetMapping("/")
+public class BoardHomeController {
+	@GetMapping("/boardHome")
 	public String home(Model model) {
-		model.addAttribute("loginName", "구디");
-		// System.out.println(model.getAttribute("loginName"));
-		// log 프레임워크 사용
-		log.trace("loginName: "+model.getAttribute("loginName"));
+		model.addAttribute("loginName", "BoardAdmin");
 		log.debug("loginName: "+model.getAttribute("loginName"));
-		log.info("loginName: "+model.getAttribute("loginName"));
-		return "home";
+		return "boardHome";
 	}
 }
