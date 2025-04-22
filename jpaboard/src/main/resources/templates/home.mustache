@@ -9,14 +9,38 @@
 <body>
 	<!-- header.mustache include -->
 	{{>layouts/header}}
-
-	{{loginName}}님 반갑습니다.
+	<h1>Home</h1>
+	{{^loginMember}}
 	<div>
-		<a href="/articles/new">글입력</a>
+		<a href="/member/joinMember">회원가입</a>
 	</div>
 	<div>
-		<a href="/articles/index">리스트</a>
+		<a href="/member/login">로그인</a>
 	</div>
+	{{/loginMember}}
+	{{#loginMember}}
+	<div>
+			{{loginMember.memberId}}님 반갑습니다.
+			<a href="/member/logout">로그아웃</a>
+			<a href="/member/modifyMemberPw">비밀번호수정</a>
+			<a href="/member/removeMember">회원탈퇴</a>
+	</div>
+	<div>
+		<a href="/articles/new">Article 글입력</a>
+	</div>
+	<div>
+		<a href="/articles/index">Article 리스트</a>
+	</div>
+	<div>
+		<a href="/board/addBoard">Board 입력</a>
+	</div>
+	<div>
+		<a href="/board/boardList">Board 리스트</a>
+	</div>
+	<div>
+		<a href="/member/memberList">Member 리스트</a>
+	</div>
+	{{/loginMember}}
 	<!-- footer.mustache include -->
 	{{>layouts/footer}}
 </body>

@@ -9,7 +9,13 @@
 	<body>
 		<!-- header.mustache include -->
 		{{>layouts/header}}
-		
+		<h1>Board 수정</h1>
+		<div>
+			{{loginMember.memberId}}님 반갑습니다.
+			<a href="/member/logout">로그아웃</a>
+			<a href="/member/modifyMemberPw">비밀번호변경</a>
+			<a href="/member/removeMember">회원탈퇴</a>
+		</div>
 		{{#board}}
 		<form class="container" action="/board/update" method="post">
 		    <input name="no" type="hidden" value="{{no}}">

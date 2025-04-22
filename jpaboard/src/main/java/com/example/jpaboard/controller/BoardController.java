@@ -15,6 +15,7 @@ import com.example.jpaboard.dto.BoardForm;
 import com.example.jpaboard.entity.Board;
 import com.example.jpaboard.repository.BoardRepository;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -24,7 +25,11 @@ public class BoardController {
 	private BoardRepository boardRepository;
 	
 	@GetMapping("/board/addBoard")
-	public String newBoardForm() {
+	public String newBoardForm(HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}
 		return "board/addBoard";
 	}
 	
@@ -41,7 +46,12 @@ public class BoardController {
 	public String list(Model model
 						, @RequestParam(defaultValue = "0") int currentPage
 						, @RequestParam(defaultValue = "10") int rowPerPage
-						, @RequestParam(defaultValue = "") String word) {
+						, @RequestParam(defaultValue = "") String word, HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}
+		
 		Sort sort = Sort.by("no").descending();
 		
 		PageRequest page = PageRequest.of(currentPage, rowPerPage, sort);
@@ -65,14 +75,22 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/boardOne")
-	public String one(Model model, @RequestParam Integer no) {
+	public String one(Model model, @RequestParam Integer no, HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}
 		Board board = boardRepository.findById(no).orElse(null);
 		model.addAttribute("board", board);
 		return "board/boardOne";
 	}
 	
 	@GetMapping("/board/modifyBoard")
-	public String modify(Model model, @RequestParam Integer no) {
+	public String modify(Model model, @RequestParam Integer no, HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}
 		Board board = boardRepository.findById(no).orElse(null);
 		model.addAttribute("board", board);
 		return "board/modifyBoard";
@@ -88,7 +106,12 @@ public class BoardController {
 	}
 	
 	@GetMapping("board/deleteBoard")
-	public String deleteBoard(@RequestParam Integer no, RedirectAttributes rdb) {
+	public String deleteBoard(@RequestParam Integer no, RedirectAttributes rdb, HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}
+		
 		Board board = boardRepository.findById(no).orElse(null);
 		
 		if(board == null) {

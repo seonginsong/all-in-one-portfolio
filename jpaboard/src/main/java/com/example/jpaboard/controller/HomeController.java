@@ -11,13 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class HomeController {
 	@GetMapping("/")
-	public String home(Model model) {
-		model.addAttribute("loginName", "구디");
-		// System.out.println(model.getAttribute("loginName"));
-		// log 프레임워크 사용
-		log.trace("loginName: "+model.getAttribute("loginName"));
-		log.debug("loginName: "+model.getAttribute("loginName"));
-		log.info("loginName: "+model.getAttribute("loginName"));
+	public String home() {
 		return "home";
 	}
 }

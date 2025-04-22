@@ -9,6 +9,13 @@
 	<body>
 		<!-- header.mustache include -->
 		{{>layouts/header}}
+		<h1>article 상세보기</h1>
+		<div>
+			{{loginMember.memberId}}님 반갑습니다.
+			<a href="/member/logout">로그아웃</a>
+			<a href="/member/modifyMemberPw">비밀번호변경</a>
+			<a href="/member/removeMember">회원탈퇴</a>
+		</div>
 		{{#msg}}
 			<div>{{msg}}</div>
 		{{/msg}}

@@ -1,5 +1,7 @@
 package com.example.jpaboard.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +17,7 @@ import com.example.jpaboard.dto.ArticleForm;
 import com.example.jpaboard.entity.Article;
 import com.example.jpaboard.repository.ArticleRepository;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -23,8 +26,20 @@ public class ArticleController {
 	@Autowired // 의존성 주입
 	private ArticleRepository articleRepository;
 	
+	@GetMapping("/articles/sqlTest")
+	public String sqlTest(Model model) {
+		Map<String, Object> map = articleRepository.getMinMaxCountByTitle("a%");
+		model.addAttribute("map", map);
+		log.debug(map.toString());
+		return "articles/sqlTest";
+	}
+	
 	@GetMapping("/articles/new") // doGet()
-	public String newArticleForm() {
+	public String newArticleForm(HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}	
 		return "articles/new";
 	}
 	
@@ -47,8 +62,12 @@ public class ArticleController {
 	public String list(Model model
 							, @RequestParam(value = "currentPage", defaultValue = "0") int currentPage
 							, @RequestParam(value = "rowPerPage", defaultValue = "10") int rowPerPage
-							, @RequestParam(value = "word", defaultValue = "") String word) {
-		
+							, @RequestParam(value = "word", defaultValue = "") String word
+							, HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}
 		//Sort s1 = Sort.by("title").ascending();
 		//Sort s2 = Sort.by("content").descending();
 		//Sort sort = s1.and(s2);
@@ -74,21 +93,33 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/articles/show")
-	public String show(Model model, @RequestParam long id) {
+	public String show(Model model, @RequestParam long id, HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}
 		Article article = articleRepository.findById(id).orElse(null);
 		model.addAttribute("article", article);
 		return "articles/show";
 	}
 	
 	@GetMapping("/articles/edit")
-	public String edit(Model model, @RequestParam long id) {
+	public String edit(Model model, @RequestParam long id, HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}
 		Article article = articleRepository.findById(id).orElse(null);
 		model.addAttribute("article", article);
 		return "articles/edit";
 	}
 	
 	@PostMapping("articles/update")
-	public String update(ArticleForm articleForm) {
+	public String update(ArticleForm articleForm, HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}
 		Article article = articleForm.toEntity(); // 저장하면 원래 있던 키(id)행을 수정
 		// entity가 키값을 가지고있으면 새로운 행 추가가 아닌 수정
 		articleRepository.save(article);
@@ -97,7 +128,11 @@ public class ArticleController {
 	}
 	
 	@GetMapping("articles/delete")
-	public String delete(@RequestParam long id, RedirectAttributes rda) {
+	public String delete(@RequestParam long id, RedirectAttributes rda, HttpSession session) {
+		// session 인증/인가 검사
+		if(session.getAttribute("loginMember") == null) {
+			return "redirect:/member/login";
+		}
 		Article article = articleRepository.findById(id).orElse(null);
 		
 		if(article == null) {

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+	<body>
+		<!-- header.mustache include -->
+		{{>layouts/header}}
+
+		<h1>비밀번호 변경</h1>
+		{{#msg}}
+			<div>{{msg}}</div>
+		{{/msg}}
+		<form class="container" action = "/member/modifyMemberPw" method="post">
+			<div>현재 비밀번호 : <input type="password" class="form-control" name="nowPw"></div><br>
+			<div>변경 비밀번호 : <input type="password" class="form-control" name="nextPw1"></div>
+			<div>비밀번호 확인 : <input type="password" class="form-control" name="nextPw2"></div>
+			<button type="submit">변경하기</button>
+		</form>
+		<!-- footer.mustache include -->
+		{{>layouts/footer}}
+	</body>
+</html>
