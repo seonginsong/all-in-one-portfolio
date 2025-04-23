@@ -93,11 +93,6 @@ public class StatisticsController extends HttpServlet {
 		request.setAttribute("currentMonth", currentMonth);
 		request.setAttribute("incomeMonth", incomeMonth);
 		request.setAttribute("expenseMonth", expenseMonth);
-		request.setAttribute("year", year);
-		request.setAttribute("year", year);
-		request.setAttribute("year", year);
-		request.setAttribute("year", year);
-		request.setAttribute("year", year);
 		request.setAttribute("yearList", yearList);
 		request.setAttribute("monthList", monthList);
 		request.setAttribute("sList", sList);

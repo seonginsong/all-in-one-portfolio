@@ -1,3 +1,6 @@
+<%@page import="dto.Static"%>
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -45,12 +48,13 @@
 			<th>금액</th>
 		</tr>
 		<%
+		DecimalFormat df = new DecimalFormat("###,###");
 		int currentMonth = -1;
 		int incomeMonth = 0;
 		int expenseMonth = 0;
 
-		for (int i = 0; i < monthList.size(); i++) {
-			Static s = monthList.get(i);
+		for (int i = 0; i < ((ArrayList<Static>)request.getAttribute("monthList")).size(); i++) {
+			Static s = ((ArrayList<Static>)request.getAttribute("monthList")).get(i);
 
 			// 월 바뀌면 이전 월 출력
 			if (currentMonth != -1 && currentMonth != s.getMonth()) {
@@ -111,8 +115,8 @@
 		int incomeYear = 0;
 		int expenseYear = 0;
 
-		for (int i = 0; i < yearList.size(); i++) {
-			Static s = yearList.get(i);
+		for (int i = 0; i < ((ArrayList<Static>)request.getAttribute("yearList")).size(); i++) {
+			Static s = ((ArrayList<Static>)request.getAttribute("yearList")).get(i);
 
 			// 연도가 바뀌면 이전 연도 출력
 			if (currentYear != -1 && currentYear != s.getYear()) {
@@ -157,12 +161,12 @@
 	
 	
 	<div style="text-align: center;" class="section">
-	<form action="/cashbook2/statistics.jsp?year=<%=request.getParameter("year")%>">
+	<form action="<%=request.getContextPath()%>/statistics?year=<%=request.getParameter("year")%>">
 	<select name="year">
 	<%
-		for(Integer y : yearOptionList) {
+		for(Integer y : (ArrayList<Integer>)request.getAttribute("yearOptionList")) {
 	%>
-		<option value="<%=y%>" <%= (y == year ? "selected" : "") %>><%=y%></option>
+		<option value="<%=y%>" <%= (y == (Integer)request.getAttribute("year") ? "selected" : "") %>><%=y%></option>
 	<%
 		}
 	%>
@@ -182,8 +186,8 @@
 		int incomeS = 0;
 		int expenseS = 0;
 
-		for (int i = 0; i < sList.size(); i++) {
-			Static s = sList.get(i);
+		for (int i = 0; i < ((ArrayList<Static>)request.getAttribute("sList")).size(); i++) {
+			Static s = ((ArrayList<Static>)request.getAttribute("sList")).get(i);
 
 			// 월 바뀌면 이전 월 출력
 			if (currentS != -1 && currentS != s.getMonth()) {

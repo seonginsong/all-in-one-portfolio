@@ -56,7 +56,7 @@
 				<option value="수입" <%= request.getAttribute("kind").equals("수입") ? "selected" : "" %>>수입</option>
 				<option value="지출" <%= request.getAttribute("kind").equals("지출") ? "selected" : "" %>>지출</option>
 			</select>
-			<button type="submit">검색</button><a href="<%=request.getContextPath()%>/insertCashForm?cashdate=<%=request.getAttribute("cashdate")%>">추가</a>
+			<button type="submit">검색</button><a href="<%=request.getContextPath()%>/insertCash?cashDate=<%=request.getAttribute("cashdate")%>">추가</a>
 		</form>
 </body>
 </html>

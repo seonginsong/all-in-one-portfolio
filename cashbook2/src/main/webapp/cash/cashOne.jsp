@@ -37,7 +37,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/cashbook/css/style.css">
+<link rel="stylesheet" href="/cashbook2/css/style.css">
 <title></title>
 </head>
 <body>
