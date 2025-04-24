@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	{{#msg}}
+		<div>{{msg}}</div>
+	{{/msg}}
+	<form method="post" action="/removeBoardfile">
+	패스워드를 입력하세요 <input type="password" name="pw">
+	<input type="hidden" name="fno" value="{{fno}}">
+	<input type="hidden" name="bno" value="{{bno}}">
+	<button type="submit">삭제하기</button>
+	</form>
+	<div>
+		<a href="/boardOne?bno={{bno}}">상세페이지로 돌아가기</a>
+	</div>
+</body>
+</html>
