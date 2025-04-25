@@ -80,12 +80,12 @@
 		</tr>
 	</table>
 	<div style="text-align: center">
-	<button type="button" onclick="location.href='<%=request.getContextPath()%>/cash/updateCash?cashNo=<%=request.getAttribute("cashNo")%>&y=<%=request.getAttribute("y")%>&m=<%=request.getAttribute("m")%>&d=<%=request.getAttribute("d")%>'">수정하기</button>
-	<button type="button" onclick="location.href='<%=request.getContextPath()%>/receit/insertReceit?cashNo=<%=request.getAttribute("cashNo")%>&filename=<%=request.getAttribute("filename")%>'">영수증추가</button>
+	<button type="button" onclick="location.href='<%=request.getContextPath()%>/updateCash?cashNo=<%=request.getAttribute("cashNo")%>&y=<%=request.getAttribute("y")%>&m=<%=request.getAttribute("m")%>&d=<%=request.getAttribute("d")%>'">수정하기</button>
+	<button type="button" onclick="location.href='<%=request.getContextPath()%>/insertReceit?cashNo=<%=request.getAttribute("cashNo")%>'">영수증추가</button>
 	<%
 		if((Integer)request.getAttribute("cnt") > 0) {
 	%>
-	<button type="button" class="delete-btn" onclick="location.href='<%=request.getContextPath()%>/receit/deleteReceit?cashNo=<%=request.getAttribute("cashNo")%>&filename=<%=request.getAttribute("filename")%>'">영수증삭제</button>
+	<button type="button" class="delete-btn" onclick="location.href='<%=request.getContextPath()%>/deleteReceit?cashNo=<%=request.getAttribute("cashNo")%>&filename=<%=request.getAttribute("filename")%>'">영수증삭제</button>
 	<%
 		}
 	%>

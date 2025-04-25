@@ -65,6 +65,9 @@ public class CashOneController extends HttpServlet {
 		int m = Integer.parseInt(arr[1]);
 		int d = Integer.parseInt(arr[2]);
 		
+		request.setAttribute("y", y);
+		request.setAttribute("m", m);
+		request.setAttribute("d", d);
 		request.setAttribute("cashNo", c.getCashNo());
 		request.setAttribute("kind", c.getKind());
 		request.setAttribute("title", c.getTitle());

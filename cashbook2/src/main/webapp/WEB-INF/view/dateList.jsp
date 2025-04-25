@@ -39,7 +39,7 @@
 						<td><%=c.getMemo()%></td>
 						<td><input type="color" value="<%=c.getColor()%>" disabled></button></td>
 						<td><a href="<%=request.getContextPath()%>/cashOne?cashNo=<%=c.getCashNo()%>">자세히</a></td>
-						<td><button type="button" onclick="location.href='<%=request.getContextPath()%>/updateCashForm?cashNo=<%=c.getCashNo()%>&y=<%=request.getAttribute("y")%>&m=<%=request.getAttribute("m")%>&d=<%=request.getAttribute("d")%>'">변경하기</button></td>
+						<td><button type="button" onclick="location.href='<%=request.getContextPath()%>/updateCash?cashNo=<%=c.getCashNo()%>&y=<%=request.getAttribute("y")%>&m=<%=request.getAttribute("m")%>&d=<%=request.getAttribute("d")%>'">변경하기</button></td>
 						<td><button type="button" class="delete-btn" onclick="location.href='<%=request.getContextPath()%>/deleteCash?cashNo=<%=c.getCashNo()%>&y=<%=request.getAttribute("y")%>&m=<%=request.getAttribute("m")%>&d=<%=request.getAttribute("d")%>'">삭제하기</button>
 						</td>
 					</tr>
