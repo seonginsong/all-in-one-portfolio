@@ -15,7 +15,7 @@ import model.ReceitDao;
 @WebServlet("/deleteReceit")
 public class DeleteReceitController extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cashNo = Integer.parseInt(request.getParameter("cashNo"));
 		String filename = request.getParameter("filename");
 		System.out.println(request.getParameter("cashNo"));
