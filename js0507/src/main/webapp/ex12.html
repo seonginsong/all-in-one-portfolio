@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+	class Student {
+		constructor(name, age){
+			this.name = name; // this의 역할은 new 영역
+			this.age = age;
+		}
+		// 메서드를 화살표함수로 사용하면 안됨
+		print() {
+			alert(this.name + this.age);
+		}
+	}
+	
+	let s = new Student('상디', 20); // Student() 함수를 호출이 아니고 Student 클래스의 constructor() 호출
+	console.log(s);
+	console.log(s.name, s.age);
+	s.print();
+	
+	let s2 = new Student('초파', 7);
+	s2.print();
+	
+	class Student2 extends Student {
+		constructor(name, age, gender) {
+			super(name, age);
+			this.gender = gender;
+		}
+	}
+	
+	let ss = new Student2('우솝', 20, '남');
+	console.log(ss.name, ss.age, ss.gender);
+</script>
+</body>
+</html>

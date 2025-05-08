@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="/test.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	console.log(x);
+	
+	{
+	let y = 100;
+	console.log(y);	// {} 안에 y
+	}
+	console.log(y); // test.js : y
+	
+	// 즉시 실행 함수 표현식
+	(function() {
+		let y = 777;
+		console.log(y);
+	})();
+	
+	</script>
+</head>
+<body>
+
+</body>
+</html>

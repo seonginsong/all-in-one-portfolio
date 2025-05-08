@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<td colspan="4">문제 <input type="text" id="question" readonly>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">답안 <input type="text" id="answer" readonly>
+			</td>
+		</tr>
+		<tr>
+			<td><button type="button" id="seven">7</button></td>
+			<td><button type="button" id="eight">8</button></td>
+			<td><button type="button" id="nine">9</button></td>
+			<td><button type="button" id="new">새로운 문제 출력</button></td>
+		</tr>
+		<tr>
+			<td><button type="button" id="four">4</button></td>
+			<td><button type="button" id="five">5</button></td>
+			<td><button type="button" id="six">6</button></td>
+			<td><button type="button" id="blank1"></button></td>
+		</tr>
+		<tr>
+			<td><button type="button" id="one">1</button></td>
+			<td><button type="button" id="two">2</button></td>
+			<td><button type="button" id="three">3</button></td>
+			<td><button type="button" id="blank"></button></td>
+		</tr>
+		<tr>
+			<td><button type="button" id="back">del</button></td>
+			<td><button type="button" id="zero">0</button></td>
+			<td><button type="button" id="minus">-</button></td>
+			<td><button type="button" id="submit">답안제출</button></td>
+		</tr>
+	</table>
+	<script>
+		let question = '';
+		document.querySelector('#new').addEventListener('click', function() {
+			let q1 = Math.floor(Math.random() * 100);
+			let q2 = Math.floor(Math.random() * 100);
+			let qq = '';
+			if((Math.random() * 2)<=1) {
+				qq = '+';
+			} else {
+				qq = '-';
+			}
+			question = q1 + qq + q2;
+			console.log(question);
+			document.querySelector('#question').value = question;
+			
+			let qAnswer = 0;
+			if(qq == '+') {
+				qAnswer = q1+q2;
+			} else {
+				qAnswer = q1-q2;
+			}
+			console.log('qAnswer :' + qAnswer);
+			answer = '';
+			document.querySelector('#answer').value = answer;
+			document.querySelector('#blank1').value = qAnswer;
+		})
+		
+	
+		let answer = '';
+		document.querySelector('#zero').addEventListener('click', function() {
+			if(answer.substr(0) == '') {
+				alert('0은 가장 앞에 올 수 없습니다.');
+				return;
+			}
+			if(answer.substr(answer.length-1) == '-') {
+				alert('0은 가장 앞에 올 수 없습니다.');
+				return;
+			}
+			answer += 0;
+			document.querySelector('#answer').value = answer;
+		});
+		document.querySelector('#one').addEventListener('click', function() {
+			answer += 1;
+			document.querySelector('#answer').value = answer;
+		});
+		document.querySelector('#two').addEventListener('click', function() {
+			answer += 2;
+			document.querySelector('#answer').value = answer;
+		});
+		document.querySelector('#three').addEventListener('click', function() {
+			answer += 3;
+			document.querySelector('#answer').value = answer;
+		});
+		document.querySelector('#four').addEventListener('click', function() {
+			answer += 4;
+			document.querySelector('#answer').value = answer;
+		});
+		document.querySelector('#five').addEventListener('click', function() {
+			answer += 5;
+			document.querySelector('#answer').value = answer;
+		});
+		document.querySelector('#six').addEventListener('click', function() {
+			answer += 6;
+			document.querySelector('#answer').value = answer;
+		});
+		document.querySelector('#seven').addEventListener('click', function() {
+			answer += 7;
+			document.querySelector('#answer').value = answer;
+		});
+		document.querySelector('#eight').addEventListener('click', function() {
+			answer += 8;
+			document.querySelector('#answer').value = answer;
+		});
+		document.querySelector('#nine').addEventListener('click', function() {
+			answer += 9;
+			document.querySelector('#answer').value = answer;
+		});
+		
+		document.querySelector('#minus').addEventListener('click', function() {
+			if(answer.substr(answer.length-1) == '-') {
+				alert('연산자는 연속으로 올 수 없습니다.');
+				return;
+			}
+			if(answer.substr(0) != '-' && answer.substr(0) != '') {
+				alert('-는 음수표현에만 가능합니다.');
+				return;
+			}
+			answer += '-';
+			document.querySelector('#answer').value = answer;
+		});
+		
+		document.querySelector('#back').addEventListener('click', function() {
+			answer = answer.slice(0, -1);
+			document.querySelector('#answer').value = answer;
+		});
+		
+		document.querySelector('#submit').addEventListener('click', function() {
+			if(document.querySelector('#blank1').value == Number(answer)) {
+				alert('정답입니다!');
+				return;
+			} else {
+				alert('정답은' + document.querySelector('#blank1').value + '입니다.');
+				return;
+			}
+			console.log(answer);
+		})
+
+	</script>
+</body>
+</html>

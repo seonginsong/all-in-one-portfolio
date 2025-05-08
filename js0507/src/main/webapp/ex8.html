@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/emp.json"></script>
+
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>first_name</th>
+				<th>last_name</th>
+				<th>email</th>
+				<th>gender</th>
+				<th>hiredate</th>
+				<th>age</th>
+			</tr>
+		</thead>
+		<tbody id="emplist">
+		</tbody>
+	</table>
+	<script type="text/javascript">
+	let emp = JSON.parse(JSON.stringify(data));
+	 // 남자만 출력 -> 남자만 필터링
+	let html = '';
+	let maleEmp = emp.filter(function(e) {
+		return e.gender == 'Male';
+	}).forEach(function(e) {
+		html += '<tr>';
+		html += '<td>'+e.id+'</td>';
+		html += '<td>'+e.first_name+'</td>';
+		html += '<td>'+e.last_name+'</td>';
+		html += '<td>'+e.email+'</td>';
+		html += '<td>'+e.gender+'</td>';
+		html += '<td>'+e.hiredate+'</td>';
+		html += '<td>'+e.age+'</td>';
+	html += '</tr>';
+	});
+	document.querySelector('#emplist').innerHTML = html;
+	</script>
+</body>
+</html>

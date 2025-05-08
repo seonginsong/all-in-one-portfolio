@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>1</h1>
+	<h1></h1>
+	<h1></h1>
+	<h1></h1>
+	<h1></h1>
+	<h1></h1>
+	<h1></h1>
+<script>
+	let t1 = document.querySelectorAll('h1');
+	console.log(t1);
+	let c = ['#FF0000', '#FFA500', '#FFFF00', '#008000', '#0000FF', '#00008B', '#800080'];
+	for(i=0; i<9999; i++) {
+		let temp = c[0];
+		let rnum = Math.floor(Math.random()*7);
+		c[0] = c[rnum];
+		c[rnum] = temp;
+	}
+	console.log(c);
+	t1.forEach(function(item, index) {
+		
+		item.textContent = '안녕하세요';
+		item.style.color = c[index];
+		item.style.backgroundColor = 'rgb(0, 0, 0)';
+		item.style.padding = '10px';
+	})
+
+</script>
+</body>
+</html>

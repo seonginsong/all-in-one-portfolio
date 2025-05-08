@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+	let source = [3, 7, 10];
+	let copy1 = source; // 얕은 복사
+	copy1[1] = 99;
+	console.log('source:', source);
+	console.log('copy1:', copy1);
+	
+	let source2 = [3, 6, 9]; // 깊은 복사
+	let copy2 = new Array(source.length);
+	for(let i=0; i<copy2.length; i++) {
+		copy2[i] = source2[i];
+	}
+	console.log(copy2);
+	copy2[1] = 66;
+	console.log('source2:', source2);
+	console.log('copy2:', copy2);
+	
+	let copy3 = [...source]; // 전개연산자를 사용하면 copy2처럼 반복문을 사용하지 않고 깊은 복사가 가능
+	console.log('copy3: ', copy3);
+	copy3[1] = 89;
+	console.log('source:', source);
+</script>
+</body>
+</html>
