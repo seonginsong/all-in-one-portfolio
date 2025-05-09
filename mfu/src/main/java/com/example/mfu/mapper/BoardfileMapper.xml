@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mfu.mapper.BoardfileMapper">
+	<insert id="insertBoardfile" parameterType="com.example.mfu.dto.Boardfile">
+		INSERT INTO boardfile (
+			board_no, filename, filetype
+		) VALUES (
+			#{boardNo}, #{filename}, #{filetype}
+		)
+	</insert>
+	
+	<select id="selectFileList" resultType="com.example.mfu.dto.Boardfile" parameterType="int">
+		SELECT
+			bf.boardfile_no boardfileNo, bf.board_no boardNo, b.board_title boardTitle, bf.filename, bf.filetype
+		FROM boardfile bf
+		INNER JOIN board b
+		ON b.board_no = bf.board_no
+		WHERE bf.board_no = #{boardNo}
+	</select>
+</mapper>
