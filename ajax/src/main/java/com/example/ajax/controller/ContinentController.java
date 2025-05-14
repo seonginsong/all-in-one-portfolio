@@ -16,7 +16,7 @@ public class ContinentController {
 	@Autowired CountryMapper countryMapper;
 	@Autowired CityMapper cityMapper;
 	
-	@GetMapping({"/", "/continentList"})
+	@GetMapping("/continentList")
 	public String continentList(Model model,
 								@RequestParam(required = false) Integer continent,
 								@RequestParam(required = false) Integer country) {

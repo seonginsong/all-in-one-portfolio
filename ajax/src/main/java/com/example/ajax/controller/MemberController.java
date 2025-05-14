@@ -15,7 +15,7 @@ import com.example.ajax.mapper.MemberMapper;
 public class MemberController {
 	@Autowired MemberMapper memberMapper;
 	
-	@GetMapping("/joinMember")
+	@GetMapping({"/", "/joinMember"})
 	public String joinMember() {
 		return "joinMember";
 	}
@@ -24,14 +24,19 @@ public class MemberController {
 	public String joinMember(@RequestParam String id
 							, @RequestParam String pw
 							, @RequestParam String gender
-							, @RequestParam int age) {
+							, @RequestParam int age
+							, @RequestParam String postcode
+							, @RequestParam String roadAddress
+							, @RequestParam String jibunAddress
+							, @RequestParam String detailAddress
+							, @RequestParam String extraAddress) {
 		
 		Map<String, Object> Map = new HashMap<>();
 		Map.put("id", id);
 		Map.put("pw", pw);
 		Map.put("gender", gender);
 		Map.put("age", age);
-
+		Map.put("address", postcode+" "+ roadAddress+" "+ jibunAddress+" "+ detailAddress+" "+ extraAddress);
 		memberMapper.insertMember(Map);
 		return "redirect:/joinMember";
 	}

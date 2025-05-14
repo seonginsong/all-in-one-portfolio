@@ -9,7 +9,7 @@
 	
 	<insert id="insertMember" parameterType="map">
 		INSERT INTO member(
-			id, pw, gender, age
-		) VALUES(#{id}, #{pw}, #{gender}, #{age})
+			id, pw, gender, age, address
+		) VALUES(#{id}, #{pw}, #{gender}, #{age}, #{address})
 	</insert>
 </mapper>
