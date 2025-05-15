@@ -1,9 +1,6 @@
 {
   "ecmaVersion": 5,
   "plugins": {
-    "eslint": {
-      
-    },
     "outline": {
       
     }

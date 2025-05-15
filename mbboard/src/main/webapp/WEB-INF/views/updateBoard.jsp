@@ -28,7 +28,7 @@
 
 <script>
 	$('#back').click(function(){
-		location.href = "/boardOne?boardNo=" + ${board.boardNo}
+		location.href = "/boardOne?boardNo=" + "${board.boardNo}";
 	});
 </script>
 </body>

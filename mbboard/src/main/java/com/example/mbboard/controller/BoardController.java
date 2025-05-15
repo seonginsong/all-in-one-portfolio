@@ -27,7 +27,7 @@ public class BoardController {
         this.boardService_1 = boardService_1;
     }
 	
-	@GetMapping({"/", "/boardList"})
+	@GetMapping("/boardList")
 	public String boardList(@RequestParam(required = false) String searchWord
 							, Model model
 							, @RequestParam(defaultValue = "1") int currentPage) {
