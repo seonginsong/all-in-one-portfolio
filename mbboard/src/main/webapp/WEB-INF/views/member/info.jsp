@@ -13,5 +13,8 @@
 	<div>
 		<a href="/member/">비밀번호 수정</a>
 	</div>
+	<div>
+		<a href="/member/memberHome">memberHome으로 돌아가기</a>
+	</div>
 </body>
 </html>

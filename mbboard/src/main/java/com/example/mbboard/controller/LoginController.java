@@ -33,17 +33,8 @@ public class LoginController {
 		if(loginMember != null) {
 			session.setAttribute("loginMember", loginMember);
 		}
-		return "/member/memberHome";
+		return "/login";
 	}
 	
-	// 세션안의 상세정보를 보여주는 요청 -> 로그인 상태에서 요청가능 -> 필터1)
-	@GetMapping("/member/info") 
-	public String info() {
-		return "/member/info";
-	}
-	// 관리자 페이지 요청 -> 로그인 상태이고 role이 'ADMIN'요청가능 -> 필터2)
-	@GetMapping("/admin/adminHome") 
-	public String adminHome() {
-		return "/admin/adminHome";
-	}
+	
 }
