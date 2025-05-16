@@ -23,16 +23,17 @@
 	</c:if>
 	
 	<c:if test="${loginMember != null}">
-		<!-- 로그인 되어 있다면 -->
-		<div>
-			${loginMember.memberId}님 
-			<c:if test="${loginMember.memberRole == 'MEMBER'}">
-			<a href="/member/memberHome">memberHome</a>으로 이동
-			</c:if>
-			<c:if test="${loginMember.memberRole == 'ADMIN'}">
-			<a href="/admin/adminHome">adminHome</a>으로 이동
-			</c:if>
-		</div>
+	<!-- 로그인 되어 있다면 -->
+		<c:if test="${loginMember.memberRole == 'MEMBER'}">
+			<script>
+				location.href = "/member/memberHome";
+			</script>
+		</c:if>
+		<c:if test="${loginMember.memberRole == 'ADMIN'}">
+			<script>
+				location.href = "/admin/adminHome";
+			</script>
+		</c:if>
 		<div><a href="/logout">로그아웃</a></div>
 	</c:if>
 </body>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mbboard.mapper.ConnectCountMapper">
+	<select id="selectConnectCountAll" resultType="map">
+		SELECT
+			SUM(CASE when member_role = 'ANONYMOUS' THEN `count` ELSE 0 END) AS ANONYMOUS,
+			SUM(CASE when member_role = 'MEMBER' THEN `count` ELSE 0 END) AS MEMBER,
+			SUM(CASE when member_role = 'ADMIN' THEN `count` ELSE 0 END) AS ADMIN			
+		FROM connect_count
+	</select>
+	<select id="selectConnectCountToday" resultType="map">
+		SELECT
+			SUM(CASE when member_role = 'ANONYMOUS' THEN `count` ELSE 0 END) AS ANONYMOUS,
+			SUM(CASE when member_role = 'MEMBER' THEN `count` ELSE 0 END) AS MEMBER,
+			SUM(CASE when member_role = 'ADMIN' THEN `count` ELSE 0 END) AS ADMIN
+		FROM connect_count
+		WHERE connect_date = CURDATE();
+	</select>
+	<!-- 반환값에 따라 insert or update -->
+	<select id="selectConnectDateByKey" parameterType="com.example.mbboard.dto.ConnectCount">
+		SELECT connect_date
+		FROM connect_count
+		WHERE connect_date = CURDATE() AND member_role = #{memberRole}
+	</select>
+	<!-- 위의 반환값이 없다면 insert -->
+	<insert id="insertConnectCount" parameterType="com.example.mbboard.dto.ConnectCount">
+		INSERT INTO connect_count (
+			connect_date, member_role, count
+		) VALUES (
+			CURDATE(), #{memberRole}, 1
+		)
+	</insert>
+	<!-- 반환값이 있다면 update -->
+	<update id="updateConnectCount" parameterType="com.example.mbboard.dto.ConnectCount">
+		UPDATE connect_count
+		SET count = count + 1
+		WHERE connect_date = CURDATE() AND member_role = #{memberRole}
+	</update>
+</mapper>
