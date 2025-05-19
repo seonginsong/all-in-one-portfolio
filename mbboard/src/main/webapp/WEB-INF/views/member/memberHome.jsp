@@ -11,5 +11,6 @@
 	</div>
 	<div><a href="/logout">로그아웃</a></div>
 	<div><a href="/member/info">개인정보 상세보기</a></div>
+	<a href="/index">통계</a>
 </body>
 </html>

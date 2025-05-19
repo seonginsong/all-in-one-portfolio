@@ -127,5 +127,7 @@
       }
     });
   </script>
+ 	<a href="/admin/adminHome">adminHome으로 돌아가기</a>
+	<a href="/admin/memberList">멤버리스트</a>
 </body>
 </html>

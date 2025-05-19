@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RootController {
 	@Autowired IRootService rootService;
 	
-	@GetMapping("/")
+	@GetMapping("/index")
 	public String index(Model model) {
 		// 전체 누적 접속자수
 		// 멤버 누적 접속자수

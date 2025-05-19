@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+  <link rel="stylesheet" href="/css/whitemono-style.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
 	$(function(){
@@ -56,5 +58,7 @@
 	
 </table>
 <a href="/admin/adminHome">adminHome으로 돌아가기</a>
+<a href="/index">통계</a>
+
 </body>
 </html>

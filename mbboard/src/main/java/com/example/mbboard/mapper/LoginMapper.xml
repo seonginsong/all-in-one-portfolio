@@ -9,6 +9,35 @@
 		FROM member
 		WHERE member_id = #{memberId}
 		AND member_pw = #{memberPw}
-	
 	</select>
+	<select id="selectIdEmail" parameterType="com.example.mbboard.dto.Member" resultType="com.example.mbboard.dto.Member">
+		SELECT
+			member_id memberId
+			, email
+		FROM member
+		WHERE member_id = #{memberId}
+		AND email = #{email}
+	</select>
+	
+	<update id="updateMemberPwByAdmin" parameterType="com.example.mbboard.dto.Member">
+		UPDATE member
+		SET member_pw = #{memberPw}, pwcktime = NOW()
+		WHERE member_id = #{memberId} AND email = #{email}
+	</update>
+	
+	<update id="updateMemberPw">
+		UPDATE member
+	    SET member_pw = #{newPw}
+	    WHERE member_id = #{memberId}
+	    AND member_pw = #{currentPw}
+	</update>
+	
+	<update id="rechangeMemberPw">
+		UPDATE member
+		SET member_pw = #{reMemberPw}, pwcktime = null
+		WHERE member_pw = #{memberPw}
+		AND pwcktime is NOT NULL
+		AND TIMESTAMPDIFF(MINUTE,pwcktime,NOW()) &lt; 11
+		AND member_id = #{memberId}
+	</update>
 </mapper>
