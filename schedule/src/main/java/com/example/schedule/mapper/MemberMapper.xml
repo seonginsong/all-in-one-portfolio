@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.schedule.mapper.MemberMapper">
+	<insert id="insertMember" parameterType="com.example.schedule.dto.Member">
+		INSERT INTO member(
+			id, pw, email, active
+		) VALUES (
+			#{id}, #{pw}, #{email}, 'ON'
+		)
+	</insert>
+	<select id="login" parameterType="com.example.schedule.dto.Member" resultType="com.example.schedule.dto.Member">
+		SELECT
+			id, email
+		FROM member
+		WHERE id = #{id} AND pw = #{pw}
+	</select>
+	<update id="updateLoginActive" parameterType="com.example.schedule.dto.Member">
+		UPDATE member
+		SET active = 'ON'
+		WHERE id = #{id}
+	</update>
+	<select id="selectId" parameterType="string" resultType="string">
+		SELECT id
+		FROM member
+		WHERE id = #{id}
+	</select>
+	<select id="selectIdEmail" parameterType="com.example.schedule.dto.Member" resultType="com.example.schedule.dto.Member">
+		SELECT
+			id, email
+		FROM member
+		WHERE id = #{id} AND email = #{email}
+	</select>
+	<insert id="insertLoginDate" parameterType="com.example.schedule.dto.Member">
+		INSERT INTO login_history(
+			id, logindate
+		) VALUES (
+			#{id}, NOW()
+		)
+	</insert>
+	<update id="updateActiveOneYear">
+		UPDATE member
+		SET active = 'OFF'
+		WHERE id IN (
+		    SELECT m.id
+		    FROM member m
+		    LEFT JOIN (
+		        SELECT id, MAX(logindate) AS last_login
+		        FROM login_history
+		        GROUP BY id
+		    ) lh ON m.id = lh.id
+		    WHERE lh.last_login &lt; DATE_SUB(NOW(), INTERVAL 1 YEAR)
+	</update>
+	<select id="selectOff" resultType="com.example.schedule.dto.Member">
+		SELECT
+			id, email
+		FROM member
+		WHERE active = 'OFF'
+	</select>
+</mapper>
