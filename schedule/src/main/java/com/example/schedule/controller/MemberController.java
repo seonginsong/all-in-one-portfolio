@@ -7,21 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.schedule.dto.Member;
+import com.example.schedule.dto.PwHistory;
 import com.example.schedule.service.IMemberService;
-import com.example.schedule.service.MemberService;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 public class MemberController {
-
-    private final MemberService memberService_1;
 	@Autowired IMemberService memberService;
-
-    MemberController(MemberService memberService_1) {
-        this.memberService_1 = memberService_1;
-    }
 	
 	@GetMapping("/insertMember")
 	public String joinMember() {
@@ -73,5 +68,23 @@ public class MemberController {
 	@GetMapping("/index")
 	public String index(HttpSession session) {
 		return "index";
+	}
+	
+	// 비밀번호
+	@GetMapping("/changePw")
+	public String changePw() {
+		return "changePw";
+	}
+	
+	@PostMapping("/changePw")
+	public String changePw(Member member, HttpSession session) {
+		log.info("changePw 호출됨: " + member.getId() + ", " + member.getPw());
+		memberService.updatePw(member);
+		PwHistory ph = new PwHistory();
+		ph.setId(member.getId());
+		ph.setPw(member.getPw());
+		memberService.insertPwHistory(ph);
+		session.invalidate();
+		return "redirect:/login";
 	}
 }

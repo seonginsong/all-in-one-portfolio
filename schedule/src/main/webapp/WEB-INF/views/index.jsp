@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h1>${loginMember.id}님</h1>
+	<a href="/changePw">비밀번호 변경</a>
 	<a href="/logout">로그아웃</a>
 </body>
 </html>

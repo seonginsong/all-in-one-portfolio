@@ -19,7 +19,7 @@ public class MySchedule {
 	@Autowired JavaMailSender javaMailSender;
 	@Autowired IMemberService memberService;
 	
-	@Scheduled(cron = "0 * * * * *")// cron= "0 59 23 25 * *" -> 요구사항
+	@Scheduled(cron = "0 9 9 9 9 *")// cron= "0 59 23 25 * *" -> 요구사항
 	public void myScheduleTest() {
 		log.info("스케쥴러 테스트");
 		// 접속기간이 1년이 지났을 경우 active = OFF
@@ -33,6 +33,11 @@ public class MySchedule {
 			msg.setText("로그인하세요");
 			javaMailSender.send(msg);
 		}
+	}
+	
+	@Scheduled(cron = "0 0 0 1 * *")
+	public void deletePwHistory() {
+		memberService.deletePwHistory();
 	}
 	/*
 	 * 휴면 계정으로 만드는 서비스 메서드

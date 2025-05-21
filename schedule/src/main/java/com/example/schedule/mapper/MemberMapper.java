@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.schedule.dto.Member;
+import com.example.schedule.dto.PwHistory;
 
 @Mapper
 public interface MemberMapper {
@@ -19,9 +20,15 @@ public interface MemberMapper {
 	// 접속기록 update
 	int insertLoginDate(Member member);
 	// 1년마다 active update
-	void updateActiveOneYear();
+	int updateActiveOneYear();
 	// 로그인 시 active update
 	int updateLoginActive(Member member);
 	// OFF인 id, email
 	List<Member> selectOff();
+	
+	// pw
+	int insertPwHistory(PwHistory ph);
+	int updatePw(Member member);
+	String checkPw(PwHistory ph);
+	void deletePwHistory();
 }

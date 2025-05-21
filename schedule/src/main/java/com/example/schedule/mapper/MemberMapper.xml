@@ -10,7 +10,7 @@
 	</insert>
 	<select id="login" parameterType="com.example.schedule.dto.Member" resultType="com.example.schedule.dto.Member">
 		SELECT
-			id, email
+			id, email, pw
 		FROM member
 		WHERE id = #{id} AND pw = #{pw}
 	</select>
@@ -56,4 +56,34 @@
 		FROM member
 		WHERE active = 'OFF'
 	</select>
+	
+	<!-- pwhistory -->
+	<insert id="insertPwHistory" parameterType="com.example.schedule.dto.PwHistory">
+		INSERT INTO pw_history(
+			id, pw, change_date
+		) VALUES (
+			#{id}, #{pw}, NOW()
+		)
+	</insert>
+	<update id="updatePw" parameterType="com.example.schedule.dto.Member">
+		UPDATE member
+		SET pw = #{pw}
+		WHERE id = #{id}
+	</update>
+	<select id="checkPw" parameterType="com.example.schedule.dto.PwHistory" resultType="string">
+		SELECT id
+		FROM pw_history
+		WHERE id = #{id} AND pw = #{pw}
+	</select>
+	<delete id="deletePwHistory">
+		DELETE FROM pw_history
+		WHERE no IN (
+ 			SELECT no FROM (
+        		SELECT no,
+               		ROW_NUMBER() OVER (PARTITION BY id ORDER BY change_date DESC) AS rn
+        		FROM pw_history
+    	) AS ranked
+    	WHERE rn > 5
+		)
+	</delete>
 </mapper>
