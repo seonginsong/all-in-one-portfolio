@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mfu.mapper.BoardMapper">
+	<insert id="insertBoard" parameterType="com.example.mfu.dto.Board">
+		<selectKey resultType="Integer" keyProperty="boardNo" order="AFTER"> <!-- parameterType.setXXX(Integer) XXX:keyProperty-->
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO board (
+			board_title
+		) VALUES (
+			#{boardTitle} <!-- board.getTitle() -->
+		)
+	</insert>
+	
+	<select id="selectBoardList" resultType="com.example.mfu.dto.Board">
+		SELECT
+			board_no boardNo
+			, board_title boardTitle
+		FROM board
+	</select>
+</mapper>
