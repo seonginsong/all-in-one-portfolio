@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+	<body>
+		<!-- header.mustache include -->
+		{{>layouts/header}}
+
+		<h1>회원가입</h1>
+		{{#msg}}
+			<div>{{msg}}</div>
+		{{/msg}}
+		<form class="container" action="/member/joinMember" method="post">
+			<div>member Id : <input type="text" class="form-control" name="memberId"></div><br>
+			<div>member Pw : <input type="password" class="form-control" name="memberPw"></div>
+			<button type="submit">가입하기</button>
+		</form>
+		<!-- footer.mustache include -->
+		{{>layouts/footer}}
+	</body>
+</html>
