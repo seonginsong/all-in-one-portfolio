@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>BoardOne</h1>
+	{{#msg}}
+		<div>{{msg}}</div>
+	{{/msg}}
+	<div>
+		board 번호 : {{boardMapping.bno}}<br>
+		제목 : {{boardMapping.title}}
+	</div>
+	<!-- board 수정 -->
+	<div>
+		<a href="/modifyBoard?bno={{boardMapping.bno}}">[수정]</a>
+		<!-- board 삭제 : 1) 파일삭제 2) board삭제 -->
+		<a href="/removeBoard?bno={{boardMapping.bno}}">[삭제]</a>
+	</div>
+	<hr>
+	<!-- 개별 첨부파일 삭제 -->
+	<div>
+		<h2>첨부파일</h2> <br>
+		<table border="1">
+			{{#fileList}}
+				<tr>
+					<td>
+						<a href="/upload/{{fname}}.{{fext}}" download="{{foriginname}}">{{foriginname}}</a><br>
+					</td>
+					<td>
+						<a href="/removeBoardfile?fno={{fno}}&bno={{bno}}">삭제</a>
+					</td>
+				</tr>
+			{{/fileList}}
+		</table>
+	</div>
+	<div>
+		<a href="/">리스트로 돌아가기</a>
+	</div>
+</body>
+</html>

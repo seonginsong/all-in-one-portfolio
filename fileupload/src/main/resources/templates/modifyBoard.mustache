@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Board 수정</h1>
+	{{#msg}}
+		<div>{{msg}}</div>
+	{{/msg}}
+	<form action="/modifyBoard" method="post">
+		<div>
+		board no : <input type="number" name="bno" value="{{boardMapping.bno}}" readonly>
+		</div>
+		<div>
+		title : <input type="text" name="title" value="{{boardMapping.title}}">
+		</div>
+		<div>
+		pw : <input type="password" name="pw">
+		</div>
+		<button type="submit">변경하기</button>
+	</form>
+	<a href="/boardOne?bno={{boardMapping.bno}}">상세페이지로 돌아가기</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>addBoard</h1>
+	<form method="post" action="/addBoard" enctype="multipart/form-data">
+		<div>
+			title : <input type="text" name="title">
+		</div>
+		<div>
+			Pw : <input type="password" name="pw">
+		</div>
+		<div>
+			fileList : <input type="file" name="fileList" multiple="multiple">
+		</div>
+		<div>
+			<button type="submit">저장</button>
+		</div>			
+	</form>
+	<div>
+		<a href="/boardList">리스트로 돌아가기</a>
+	</div>
+</body>
+</html>

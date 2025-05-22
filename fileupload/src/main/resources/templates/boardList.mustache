@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Board List</h1>
+	<table border="1">
+		<tr>
+			<th>bno</th>
+			<th>title</th>
+		</tr>
+		{{#list}}
+			<tr>
+				<td>{{bno}}</td>
+				<td><a href="/boardOne?bno={{bno}}">{{title}}</a></td>
+			</tr>
+		{{/list}}
+	</table>
+	<div>
+		{{^list.isFirst}}
+			<a href="/boardList?currentPage=0">처음</a>
+		{{/list.isFirst}}	
+		{{^list.isFirst}}
+			<a href="/boardList?currentPage={{prevPage}}">이전</a>
+		{{/list.isFirst}}	
+		{{nextPage}}/{{list.getTotalPages}}
+		{{#list.hasNext}}
+			<a href="/boardList?currentPage={{nextPage}}">다음</a>
+		{{/list.hasNext}}
+		{{#list.hasNext}}
+			<a href="/boardList?currentPage={{lastPage}}">마지막</a>
+		{{/list.hasNext}}
+	</div>
+	<div>
+		<a href="/addBoard">추가하기</a>
+	</div>
+</body>
+</html>
