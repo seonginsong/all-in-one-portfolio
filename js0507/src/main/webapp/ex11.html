@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		let arr1 = new Array(); // class Array의 생성자와 new 연산자를 사용하여 배열생성
+		let arr2 = []; // 배열 리터럴을 사용하여 배열 생성
+		
+		let obj1 = new Object(); // class Object의 생성자와 new 연산자를 사용하여 객체생성
+		let obj2 = {}; // 객체 리터럴을 사용하여 객체생성
+		
+		let s1 = {name:'루피', age:19};
+		console.log(s1.name, s1.age);
+		s1.gender = '남'; // 동적타입
+		console.log(s1.name, s1.age, s1.gender);
+		
+		let s2 = {name:'조로', age:22}; // 타입에 틀이 없어서 복사 붙여넣기
+		
+		let Person = function(_name, _age) { // 자바스크립트에 클래스 문법이 없을때 - 객체를 리턴하는 함수
+			return {name:_name, age:_age};
+		}
+		
+		let s3 = Person('나미', 21); // 함수이기 때문에 new를 쓰면 안됨
+		console.log(s3.name, s3.age);
+	</script>
+</body>
+</html>

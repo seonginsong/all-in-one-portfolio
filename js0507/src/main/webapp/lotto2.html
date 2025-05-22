@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>로또 머신</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .machine {
+      position: relative;
+      width: 80vw;
+      max-width: 300px;
+      height: 80vw;
+      max-height: 300px;
+      border: 10px solid #ccc;
+      border-radius: 50%;
+      overflow: hidden;
+      animation: rotate 4s linear infinite;
+      box-shadow: inset 0 0 20px #aaa;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .ball {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .red { background-color: #e74c3c; }
+    .yellow { background-color: #f1c40f; }
+    .green { background-color: #2ecc71; }
+    .blue { background-color: #3498db; }
+    .purple { background-color: #9b59b6; }
+    .orange { background-color: #f39c12; }
+	.navy   { background-color: #34495e; }
+	.black  { background-color: #000000; }
+    
+
+    .slot {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .slot .ball {
+      animation: drop 0.6s ease-out forwards;
+    }
+
+    @keyframes drop {
+      0% { transform: translateY(-100px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #3498db;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎱 로또 머신</h2>
+
+  <div class="machine" id="machine">
+    <div class="ball red" style="position:absolute; top:20px; left:130px;">?</div>
+    <div class="ball yellow" style="position:absolute; top:200px; left:150px;">?</div>
+    <div class="ball green" style="position:absolute; top:100px; left:210px;">?</div>
+    <div class="ball blue" style="position:absolute; top:160px; left:60px;">?</div>
+    <div class="ball orange" style="position:absolute; top:50px; left:200px;">?</div>
+    <div class="ball red" style="position:absolute; top:80px; left:100px;">?</div>
+    <div class="ball yellow" style="position:absolute; top:200px; left:90px;">?</div>
+    <div class="ball green" style="position:absolute; top:100px; left:250px;">?</div>
+    <div class="ball purple" style="position:absolute; top:50px; left:200px;">?</div>
+    <div class="ball blue" style="position:absolute; top:80px; left:100px;">?</div>
+    <div class="ball navy" style="position:absolute; top:80px; left:200px;">?</div>
+  </div>
+
+  <div class="slot" id="slot"></div>
+
+  <div class="buttons">
+    <button onclick="drawBall()">추첨!</button>
+    <button onclick="resetBalls()">리셋</button>
+  </div>
+
+  <script>
+    const slot = document.getElementById('slot');
+    let drawn = [];
+    let isDrawing = false;
+
+    function getRandomNumber() {
+      let n;
+      do {
+        n = Math.floor(Math.random() * 45) + 1;
+      } while (drawn.includes(n));
+      drawn.push(n);
+      return n;
+    }
+
+    function getColor(num) {
+    	  if (num <= 6) return 'red';
+    	  if (num <= 12) return 'orange';
+    	  if (num <= 18) return 'yellow';
+    	  if (num <= 24) return 'green';
+    	  if (num <= 30) return 'blue';
+    	  if (num <= 36) return 'navy';
+    	  if (num <= 42) return 'purple';
+    	  return 'black'; // 43~45
+    	}
+
+    function drawBall() {
+      if (isDrawing) return;
+
+      isDrawing = true;
+      drawn = [];
+      slot.innerHTML = '';
+
+      let count = 0;
+      const interval = setInterval(() => {
+        if (count >= 6) {
+          clearInterval(interval);
+          isDrawing = false;
+          return;
+        }
+
+        const number = getRandomNumber();
+        const color = getColor(number);
+
+        const ball = document.createElement('div');
+        ball.className = `ball ${color}`;
+        ball.innerText = number;
+
+        slot.appendChild(ball);
+        count++;
+      }, 2000);
+    }
+
+    function resetBalls() {
+      drawn = [];
+      slot.innerHTML = '';
+      isDrawing = false;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/emp.json"></script>
+
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>first_name</th>
+				<th>last_name</th>
+				<th>email</th>
+				<th>gender</th>
+				<th>hiredate</th>
+				<th>age</th>
+			</tr>
+		</thead>
+		<tbody id="emplist">
+		</tbody>
+	</table>
+	<script type="text/javascript">
+	// [{"id":1,"first_name":"Briano","last_name":"Lottrington","email":"blottrington0@newsvine.com","gender":"Male","hiredate":"2018-07-10","age":24},
+	let emp = JSON.parse(JSON.stringify(data));
+	console.log(typeof(emp));
+	console.log(emp);
+	
+	
+	let html = '';
+	
+	emp.forEach(function(e) {
+		html += '<tr>';
+			html += '<td>'+e.id+'</td>';
+			html += '<td>'+e.first_name+'</td>';
+			html += '<td>'+e.last_name+'</td>';
+			html += '<td>'+e.email+'</td>';
+			html += '<td>'+e.gender+'</td>';
+			html += '<td>'+e.hiredate+'</td>';
+			html += '<td>'+e.age+'</td>';
+		html += '</tr>';
+	});
+	
+	document.querySelector('#emplist').innerHTML = html;
+	</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+	// a는 빈 객체로 선언됨 => 객체 타입
+	let a = {};
+	a.name = '루피'; // 객체에 프로퍼티 name을 동적으로 추가
+	console.log(a.name); // 결과: '루피' (정상 출력됨, 객체이기 때문에 프로퍼티 추가/접근 가능)
+
+	// b는 불린(true) 값 => 원시값(primitive type)
+	let b = true;
+	// 아래 주석에 나오는 것처럼 b = {}; 식으로 객체로 재할당하면 name 같은 속성을 넣을 수 있지만,
+	// 지금 b는 원시값 true임
+
+	console.log(b); // true (원시값 그대로 출력됨)
+
+	b.name = '조로'; // 원시값에 프로퍼티를 넣으려고 함
+	// 이 시점에 자바스크립트는 일시적으로 Boolean 객체로 감싸긴 하지만, 그 객체는 즉시 폐기됨
+	// 따라서 실제로 b.name은 저장되지 않음
+	console.log(b.name); // undefined (실제로 저장된 값이 없음)
+
+	// c는 래퍼 객체: Boolean 객체 생성자 사용
+	let c = new Boolean(true); // 객체 타입 (Boolean 객체)
+	console.log(c); // 출력: Boolean {true} (Object로 감싸짐)
+
+	c.name = 'nami'; // 객체이므로 프로퍼티를 자유롭게 추가 가능
+	console.log(c.name); // 결과: 'nami' (정상 출력됨)
+
+	// d는 문자열 원시값
+	let d = '쵸파';
+	d.age = 7; // 문자열도 원시값이라 객체처럼 프로퍼티 추가할 수 없음
+	// 이 순간에도 일시적으로 String 객체로 감쌌다가 바로 버려지기 때문에 실제로 저장되지 않음
+
+	console.log(d.age); // undefined (프로퍼티가 실제로 존재하지 않음)
+
+	console.log(d.length); // 2
+	// 문자열 원시값도 `.length`를 사용할 수 있는 이유는,
+	// 자바스크립트가 일시적으로 String 객체로 감싸서 length 프로퍼티를 읽기 때문
+	/*
+	원시값(Primitive): number, string, boolean, undefined, null, symbol, bigint
+
+	이들은 불변이며, 일반적으로 프로퍼티를 가질 수 없음.
+
+	래퍼 객체: 원시값을 감싸는 객체 (예: new Boolean(true), new String("abc"))
+
+	명시적으로 생성하면 객체가 되므로 프로퍼티를 가질 수 있음.
+
+	자바스크립트 내부 처리: 원시값에 프로퍼티 접근 시 자동으로 임시 객체로 감싸지만, 접근 후 즉시 제거됨.
+	*/
+</script>
+</body>
+</html>
