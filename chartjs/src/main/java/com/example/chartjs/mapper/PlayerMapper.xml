@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.chartjs.mapper.PlayerMapper">
+	<select id="selectAvgAgeByCountry" parameterType="map">
+		SELECT country, AVG(age) age
+		FROM player
+		GROUP BY country
+		ORDER BY country
+	</select>
+	<select id="selectCountByGender" parameterType="map">
+		SELECT gender, COUNT(*) count
+		FROM player
+		GROUP BY gender
+	</select>
+	<select id="selectCountByYearAndCountry" parameterType="map">
+		SELECT YEAR(joindate) year, country, COUNT(*) count
+		FROM player
+		GROUP BY YEAR(joindate), country
+		ORDER BY YEAR(joindate), country
+	</select>
+	<select id="selectTotalCountByYear" parameterType="map">
+		SELECT YEAR(joindate) year, SUM(COUNT(*)) OVER(ORDER BY YEAR(joindate)) AS count
+		FROM player
+		GROUP BY YEAR(joindate)
+		ORDER BY YEAR(joindate)
+	</select>
+</mapper>
