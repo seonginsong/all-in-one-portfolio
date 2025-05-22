@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+		.redtxt {color:red;}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script>
+		$/*생략가능(document).ready*/(function(){
+			$('h1').text('hello');
+			$('#target').text('hi');
+			$('.g1').text('bye');
+			//alert($('div:last').text());
+			$('div:even').each(function(i, e) {
+				$(e).addClass('redtxt');
+			});
+			/*
+			$('div:even').each(function() {
+				$(this).addClass('redtxt');
+			});
+			*/
+			$('.ck:checked').each(function() {
+				alert($(this).val());
+			})
+			
+			$('#btn').click(function() {
+				alert('버튼클릭');
+			});
+		});
+	</script>
+</head>
+<body>
+	<button id="btn">버튼</button>
+
+	<h1></h1>
+	<h2 id="target"></h2>
+	<h2 class="g1"></h2>
+	<p class="g1"></p>
+	
+	<div>div1</div>
+	<div>div2</div>
+	<div>div3</div>
+	<div>div4</div>
+	<div>div5</div>
+	
+	<input type="checkbox" class="ck" value="1" checked>one<br>
+	<input type="checkbox" class="ck" value="2">two<br>
+	<input type="checkbox" class="ck" value="3" checked>three<br>
+	<input type="checkbox" class="ck" value="4" checked>four<br>
+	<input type="checkbox" class="ck" value="5">five<br>
+</body>
+</html>
