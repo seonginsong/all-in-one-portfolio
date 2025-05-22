@@ -1,0 +1,257 @@
+@charset "UTF-8";
+/* 공통 스타일 */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+h1, h2, h3 {
+  color: #2c3e50;
+}
+
+a {
+  color: #3498db;
+  text-decoration: none;
+  margin: 0 5px;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  max-width: 960px;
+  margin: 20px auto;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  min-width: 80px;
+  white-space: nowrap;
+}
+button:hover {
+  background-color: #2980b9;
+}
+
+/* 테이블 */
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+th {
+  background-color: #f0f4f8;
+  padding: 10px;
+  font-weight: bold;
+  color: #333;
+}
+td {
+  width: 14.2%;
+  height: 100px;
+  vertical-align: top;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  font-size: 14px;
+  position: relative;
+}
+
+/* 날짜 숫자 */
+td > div:first-child a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+/* 삭제 버튼 */
+button.delete-btn {
+  background-color: #e74c3c;
+}
+button.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* select 전용 */
+select {
+  background-color: #fff;
+  appearance: none;
+  padding-right: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%225%22%20viewBox%3D%220%200%2010%205%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%205%205-5z%22%20fill%3D%22%23333%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 5px;
+  cursor: pointer;
+}
+
+/* 검색 바 정렬용 */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 960px;
+  margin: 0 auto 20px;
+}
+.search-bar input[type="text"] {
+  width: 200px;
+}
+.search-bar select {
+  width: 100px;
+}
+
+/* 페이지네이션 */
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* form 내부 요소 간격 */
+form select,
+form button {
+  margin-right: 10px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* 수입/지출 내용 박스 */
+.day-box {
+  margin-top: 5px;
+  font-size: 13px;
+  max-height: 70px;
+  overflow-y: auto;
+}
+
+/* ✅ 각 항목 말줄임 처리 */
+.day-box .cash-item {
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+
+/* ✅ 호버 시 전체 내용 보기 (선택사항) */
+.day-box .cash-item:hover {
+  .cash-item:hover {
+  background-color: #f0f0f0;
+  cursor: default;
+}
+/* 전체 테이블 고정 너비 및 중앙 정렬 */
+.calendar-table {
+  width: 700px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  table-layout: fixed; /* 셀 너비 균등하게 */
+}
+
+/* 각 셀 크기 고정 및 스타일 */
+.calendar-table td, .calendar-table th {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+  vertical-align: top;
+  padding: 4px;
+  overflow: hidden;
+}
+
+/* 셀 안의 내용 말줄임 처리 */
+.calendar-content {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* 최대 줄 수 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  font-size: 13px;
+  line-height: 1.2em;
+  height: 5em; /* line-height * 줄 수 (1.2em * 4줄 + 여유) */
+}
+
+/* 각 날짜 텍스트 스타일 */
+.calendar-day {
+  font-weight: bold;
+  color: blue;
+  margin-bottom: 2px;
+}
+
+/* 전체 테이블 고정 너비 및 중앙 정렬 */
+.calendar-table {
+  height: 700px;
+  width: 700px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  table-layout: fixed; /* 셀 너비 균등하게 */
+}
+
+/* 각 셀 크기 고정 및 스타일 */
+.calendar-table td, .calendar-table th {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+  vertical-align: top;
+  padding: 4px;
+  overflow: hidden;
+}
+
+/* 셀 안의 내용 말줄임 처리 */
+.calendar-content {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  font-size: 13px;
+  line-height: 1.2em;
+  height: 5em;
+}
+
+/* 각 날짜 텍스트 스타일 */
+.calendar-day {
+  font-weight: bold;
+  color: blue;
+  margin-bottom: 2px;
+}
+
+/* ✅ 추가: 달력 컨테이너의 높이 고정 및 정렬 */
+.calendar-container {
+  min-height: 720px; /* 5~6주짜리 달력 기준 여유 있게 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 720px;
+}
+
+/* ✅ 추가: 링크 위치 고정 스타일 */
+.calendar-nav {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+}
