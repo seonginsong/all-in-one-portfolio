@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mbboard.mapper.BoardMapper">
+	<select id="selectCnt" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM board
+		<where>
+			<if test="searchWord != null and searchWord != ''">
+				AND board_title like CONCAT('%',#{searchWord},'%')
+			</if>
+		</where>
+	</select>
+	<select id="selectBoardOne" parameterType="com.example.mbboard.dto.Board"
+								resultType="com.example.mbboard.dto.Board">
+		SELECT
+			board_no boardNo
+			, board_title boardTitle
+			, board_content boardContent
+			, board_user boardUser
+			, updatedate
+			, createdate
+		FROM board
+		WHERE board_no = #{boardNo}
+	</select>
+	<select id="selectBoardListByPage" parameterType="com.example.mbboard.dto.Page"
+									resultType="com.example.mbboard.dto.Board">
+		SELECT
+			board_no boardNo
+			, board_title boardTitle
+			, board_content boardContent
+			, board_user boardUser
+			, updatedate
+			, createdate
+		FROM board
+		<where>
+			<if test="searchWord != null and searchWord != ''">board_title like CONCAT('%',#{searchWord},'%')</if>
+		</where>
+		ORDER BY board_no
+		LIMIT #{beginRow}, #{rowPerPage}
+	</select>
+	<insert id="insertBoard" parameterType="com.example.mbboard.dto.Board">
+		INSERT INTO board (
+			board_title, board_content, board_user
+		) VALUES (
+			#{boardTitle}, #{boardContent}, #{boardUser}
+		)
+	</insert>
+	<update id="updateBoard" parameterType="com.example.mbboard.dto.Board">
+		UPDATE board
+		<set>
+			<if test="boardTitle != null">board_title = #{boardTitle},</if>
+			<if test="boardContent != null">board_content = #{boardContent},</if>
+			<if test="boardUser != null">board_user = #{boardUser}</if>
+		</set>
+		WHERE board_no = #{boardNo}
+	</update>
+	
+	<delete id="deleteBoardByKey" parameterType="com.example.mbboard.dto.Board">
+		DELETE FROM board
+		WHERE board_no = #{boardNo}
+	</delete>
+</mapper>

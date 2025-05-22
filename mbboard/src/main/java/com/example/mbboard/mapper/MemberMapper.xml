@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mbboard.mapper.MemberMapper">
+	<!-- 로그인 시 -->
+	<select id="selectMemberId" parameterType="string" resultType="string">
+		SELECT member_id
+		FROM member
+		WHERE member_id = #{memberId}
+	</select>
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="com.example.mbboard.dto.Member">
+		INSERT INTO member(
+			member_id, member_pw, member_role
+		) VALUES(#{memberId}, #{memberPw}, 'MEMBER')
+	</insert>
+	<!-- 멤버리스트 -->
+	<select id="selectMemberList" resultType="com.example.mbboard.dto.Member">
+		SELECT member_id memberID, member_role memberRole
+		FROM member
+	</select>
+	<!-- role 변경 -->
+	<update id="updateMemberRole" parameterType="string">
+    UPDATE member
+    SET member_role = 
+        CASE 
+            WHEN member_role = 'ADMIN' THEN 'MEMBER'
+            WHEN member_role = 'MEMBER' THEN 'ADMIN'
+            ELSE member_role
+        END
+    WHERE member_id = #{memberId}
+	</update>
+</mapper>
