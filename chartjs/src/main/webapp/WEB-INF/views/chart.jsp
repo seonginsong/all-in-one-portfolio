@@ -17,7 +17,7 @@
 		</canvas>
 	</div>
 	<div>
-		<h1>성별간 가입자 수</h1>
+		<h1>성별 간 가입자 수</h1>
 		<canvas id="chart2" style="width:100%;max-width:700px">
 		
 		</canvas>
