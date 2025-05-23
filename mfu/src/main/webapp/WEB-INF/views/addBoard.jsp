@@ -9,7 +9,7 @@
     <title>addBoard</title>
 </head>
 <body>
-    <h1>addBoard</h1>
+    <h1>board 추가</h1>
     <!-- 게시글 작성 폼 -->
     <form id="addForm" action="${pageContext.request.contextPath}/addBoard" method="post" enctype="multipart/form-data">
         <table border="1">
