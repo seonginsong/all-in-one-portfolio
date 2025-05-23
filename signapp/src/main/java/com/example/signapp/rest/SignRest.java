@@ -4,20 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.signapp.dto.SignappForm;
-import com.example.signapp.service.SignappService;
+import com.example.signapp.dto.SignForm;
+import com.example.signapp.service.SignService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController // controller + responsebody
-public class SignappRest {
-	@Autowired SignappService signappService;
+public class SignRest {
+	@Autowired SignService signService;
 	@PostMapping("/addSign")
-	public String addSign(SignappForm signappForm) {
-		log.info(signappForm.toString());
+	public String addSign(SignForm signForm) {
+		log.info(signForm.toString());
 		// service - mapper 를 통해서 db에 저장
-		signappService.addSign(signappForm);
+		signService.addSign(signForm);
 		return "결제완료";
 	}
 }

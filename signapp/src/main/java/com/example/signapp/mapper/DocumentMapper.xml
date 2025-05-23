@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.signapp.mapper.DocumentMapper">
+<insert id="writeDocument" parameterType="com.example.signapp.dto.Document">
+    INSERT INTO document (document_title, document_content, employee_id)
+    VALUES (#{documentTitle}, #{documentContent}, #{employeeId})
+</insert>
+
+<select id="selectDocumentList" resultType="com.example.signapp.dto.Document">
+    SELECT d.document_no AS documentNo,
+           d.document_title AS documentTitle,
+           e.employee_name AS employeeName
+      FROM document d
+      LEFT JOIN employee e ON d.employee_id = e.employee_id
+</select>
+
+</mapper> 

@@ -53,7 +53,7 @@
 
 </head>
 <body>
-<h1>level3</h1>
+<h1>level2</h1>
 	<!-- id : 사인 레벨이 되는 로그인 사용자 id -->
 	<div id="id">manager</div> <!-- <input id ="id" type="text" value="manage"> -->
 	<canvas style="border: 1px solid #FF0000;"></canvas>
