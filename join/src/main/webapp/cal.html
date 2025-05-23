@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    table {
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    input#result {
+        width: 100%;
+        font-size: 24px;
+        padding: 10px;
+        box-sizing: border-box;
+        border: none;
+        text-align: right;
+    }
+
+    button {
+        width: 100%;
+        height: 60px;
+        font-size: 20px;
+        border: none;
+        background-color: #e0e0e0;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    button:hover {
+        background-color: #d0d0d0;
+    }
+
+    button:active {
+        background-color: #bdbdbd;
+    }
+</style>
+
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<td colspan="4">
+				<input type="text" id="result">
+			</td>
+		</tr>
+		<tr>
+			<td><button type="button" id="seven">7</button></td>
+			<td><button type="button" id="eight">8</button></td>
+			<td><button type="button" id="nine">9</button></td>
+			<td><button type="button" id="devide">/</button></td>
+		</tr>
+		<tr>
+			<td><button type="button" id="four">4</button></td>
+			<td><button type="button" id="five">5</button></td>
+			<td><button type="button" id="six">6</button></td>
+			<td><button type="button" id="multiple">*</button></td>
+		</tr>
+		<tr>
+			<td><button type="button" id="one">1</button></td>
+			<td><button type="button" id="two">2</button></td>
+			<td><button type="button" id="three">3</button></td>
+			<td><button type="button" id="minus">-</button></td>
+		</tr>
+		<tr>
+			<td><button type="button" id="equal">=</button></td>
+			<td><button type="button" id="zero">0</button></td>
+			<td><button type="button" id="back">←</button></td>
+			<td><button type="button" id="plus">+</button></td>
+		</tr>
+	</table>
+	<script>
+		let result = '';
+		document.querySelector('#zero').addEventListener('click', function() {
+			result += 0;
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#one').addEventListener('click', function() {
+			result += 1;
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#two').addEventListener('click', function() {
+			result += 2;
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#three').addEventListener('click', function() {
+			result += 3;
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#four').addEventListener('click', function() {
+			result += 4;
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#five').addEventListener('click', function() {
+			result += 5;
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#six').addEventListener('click', function() {
+			result += 6;
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#seven').addEventListener('click', function() {
+			result += 7;
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#eight').addEventListener('click', function() {
+			result += 8;
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#nine').addEventListener('click', function() {
+			result += 9;
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#plus').addEventListener('click', function() {
+			if(result.substr(result.length-1) == '+' || 
+					result.substr(result.length-1) == '-' || 
+					result.substr(result.length-1) == '*' || 
+					result.substr(result.length-1) == '/') {
+				alert('연산자는 연속으로 올 수 없습니다.')
+				return;
+			}
+			result += '+';
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#minus').addEventListener('click', function() {
+			if(result.substr(result.length-1) == '-' || 
+					result.substr(result.length-1) == '+' || 
+					result.substr(result.length-1) == '*' || 
+					result.substr(result.length-1) == '/') {
+				alert('연산자는 연속으로 올 수 없습니다.')
+				return;
+			}
+			result += '-';
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#multiple').addEventListener('click', function() {
+			if(result.substr(result.length-1) == '*' || 
+					result.substr(result.length-1) == '-' || 
+					result.substr(result.length-1) == '+' || 
+					result.substr(result.length-1) == '/') {
+				alert('연산자는 연속으로 올 수 없습니다.')
+				return;
+			}
+			result += '*';
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#devide').addEventListener('click', function() {
+			if(result.substr(result.length-1) == '/' || 
+					result.substr(result.length-1) == '-' || 
+					result.substr(result.length-1) == '*' || 
+					result.substr(result.length-1) == '+') {
+				alert('연산자는 연속으로 올 수 없습니다.')
+				return;
+			}
+			result += '/';
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#back').addEventListener('click', function() {
+			result = result.slice(0, -1);
+			document.querySelector('#result').value = result;
+		});
+		document.querySelector('#equal').addEventListener('click', function() {
+			try{result = eval(result).toString();  // 계산 수행 후 문자열로 변환
+			document.querySelector('#result').value = result;}
+			catch(e) {
+				alert('잘못된 수식입니다.');
+				return;
+			}
+		});
+	</script>
+</body>
+</html>

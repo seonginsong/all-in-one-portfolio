@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		for(let i=1; i<10; i++) {
+			console.log(i);
+		}
+		
+		let arr = ['루피','조로','상디','나미'];
+		for(let i=0; i<arr.length; i++) {
+			console.log(arr[i]);
+		}
+		
+		for(const i in arr) { // for(Integer i : arr)
+			console.log(Number(i)+1, '번', arr[i]);
+		}
+		
+		for(const name of arr) {
+			console.log(name);
+		}
+		
+		arr.forEach(function(name, index) {console.log(name, index+1,'번')});
+		
+		for(let i=0; i<10; i++) {
+			if(i%2 == 0) {
+				continue;
+			}
+			console.log(i);
+		}
+	</script>
+</body>
+</html>

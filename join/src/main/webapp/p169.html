@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		// 배열 API
+		// splice() : 원본파괴
+		// slice() : 원본비파괴
+		let arr1 = [5, 10, 15, 20, 25];
+		let arr2 = [5, 10, 15, 20, 25];
+		console.log('before arr1', arr1);
+		let r1 = arr1.splice(2,2);// 2~2개
+		let r2 = arr2.slice(2,4);// 2~4-1
+		console.log('r1:',r1);
+		console.log('r2:',r2);
+		console.log('arr1:',arr1);
+		console.log('arr2:',arr2);
+	</script>
+</body>
+</html>

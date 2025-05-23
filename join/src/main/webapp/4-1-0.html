@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+	let arr = [];
+	arr.push('루피');
+	arr.push('조로');
+	arr.push('나미');
+	
+	console.log(arr[2]);
+	console.log(arr[3]);
+	
+	arr.push('상디');
+	arr.push('우솝');
+	arr.push('쵸파');
+	console.log(arr);
+	
+	let arr2 = arr.splice(3,2);
+	console.log(arr);
+	console.log(arr2);
+	
+	console.log(arr.indexOf('조로'));
+	
+	let str = '동해물과 백두산이 마르고 닳도록';
+	console.log(str[3]);
+	console.log(str.indexOf(' 백두산이'));
+	console.log(str.indexOf('백두산마'));
+	
+	arr.filter(function(x) {console.log(x);}); // 람다함수(화살표)를 arr을 순환하면서 요소를 매개값으로 실행(arr에선 4번)
+	arr.filter((x) => console.log(x));
+	// let arr3 = arr.filter((x) => if(~~~));
+</script>
+</body>
+</html>

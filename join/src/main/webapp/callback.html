@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		let carMove = function() {
+			console.log('차를타고간다');
+		}
+		let cycleMove = function() {
+			console.log('자전거를타고간다');
+		}
+		let busMove = function() {
+			console.log('버스를타고간다');
+		}
+	
+		let move = function(f) { // 자바스크립트는 변수에 함수가 저장된다, 매개변수자리에 함수 -> callback 함수
+			f();
+		}
+		let move2 = function(str) {
+			if(str == '차') {
+				console.log('차를타고간다');
+			} else if(str == '자전거') {
+				console.log('자전거를타고간다');
+			}
+		}
+		move(carMove);
+		move2('자전거');
+		
+		move(function() {console.log('읭')});
+	</script>
+</body>
+</html>

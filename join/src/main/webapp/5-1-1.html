@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		function hello() { // {}안의 모든 코드들(명령)을 hello라는 이름으로 부르겠다
+			alert('hello');
+		}
+		hello(); //함수호출
+		
+		let bye = function () {
+			alert('bye');
+		};
+		bye();
+		
+		let hello2 = hello;
+		hello2();
+		
+		//f1(); // 익명함수는 코드의 순서가 만들어진 후에 호출 가능 -> error
+		f2(); // 선언적함수는 
+		
+		(function () {alert('하하하');})(); // 익명함수를 즉시 호출
+		
+		let f1 = function () {alert('호호호');};
+		
+		// 선언적 함수 : 호이스팅 -> 실행전에 함수선언코드를 코드의 첫라인으로 이동시킨다.
+		function f2() {
+			alert('후후후');
+		};
+		
+		// ===================구조적 프로그래밍=====================
+		// API
+		let am = function() {alert('아침먹어');};
+		let pm = function() {alert('저녁먹어');};
+		// 구조적프로그래밍
+		const today = new Date();
+		const hour = today.getHours();
+		
+		if(hour < 12) {
+			am();
+		} else {
+			pm();
+		}
+		
+		// 함수형 프로그래밍
+		// API
+		let eat = function(amORpm) {
+			amORpm();
+		}
+
+		let x; 
+		if(hour < 12) {
+			x=am;
+		} else {
+			x=pm;
+		}
+		
+		// 호출
+		eat(x)
+		
+		
+	</script>
+</body>
+</html>

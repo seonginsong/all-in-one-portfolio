@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		let isLeapYear = function(year) { // year자리에 값이 들어가있지 않으면 undefined -> 모두 NaN이 나오며, NaN은 0과 다르기때문에 false
+			return (year%4==0) && (year%100!=0) || (year%4==0);
+		};
+		console.log('2020년', isLeapYear(2020));
+		console.log('2010년', isLeapYear(2010));
+		
+		let sumAll = function(a, b) {
+			let output = 0;
+			for(let i=a; i<=b; i++) {
+				output += i;
+			}
+			return output;
+		};
+		console.log(sumAll(2,7));
+		
+		// 최솟값, 최댓값
+		let min = function(array) {
+			let output = array[0];
+			for(let item of array) {
+				if(output > item) {
+					output = item;
+				}
+			}
+			return output;
+		}
+		console.log(min([3, 5, 1, 7, 4, 9]));
+		
+		// 가변매개변수
+		let sample = function(...args) {
+			for(let a of args) {
+				console.log(a, ':', a%2==0);
+			}
+		}
+		sample(3,4,5,6);
+		sample([2,3,4,5]);
+		sample([2,3,4,5][0],[2,3,4,5][1],[2,3,4,5][2],[2,3,4,5][3]);
+		let a = [7,7,8,9];
+		sample(...a);//전개연산자
+		
+		let earning = function(name, wage=8690, hours=40) {
+			console.log(name);
+			console.log(wage);
+			console.log(hours);
+		};
+		earning('루피');
+		earning('조로', 1000, 20);
+		earning();
+		
+		let multiplyAll = function(a, b) {
+			result = 1;
+			for(i=a; i<=b; i++) {
+				result = result*i;
+			}
+			return result;
+		}
+		console.log(multiplyAll(1, 2));
+		console.log(multiplyAll(1, 3));
+		
+	</script>
+</body>
+</html>
