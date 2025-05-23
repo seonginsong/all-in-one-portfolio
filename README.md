@@ -11,6 +11,7 @@
 | ajax        | AJAX 활용 웹 기능 실습 프로젝트          |
 | cashbook2   | 가계부 프로젝트의 MVC 구조 리팩토링 버전 |
 | java-oop    | 자바 객체지향 프로그래밍 문법            |
+| join        | JavaScript로 계산기, 로또번호 생성기 구현|
 | poll        | 투표 시스템 구현 프로젝트               |
 | jpaboard    | JPA를 활용한 게시판 프로젝트            |
 | sakila      | Sakila DB를 활용한 실습 프로젝트         |
