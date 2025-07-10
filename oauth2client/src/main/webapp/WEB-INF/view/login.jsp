@@ -33,7 +33,10 @@
       gap: 10px;
     }
 
-
+	.btn img {
+		width: 20px;
+		height: 20px;
+	}
     .google-btn {
       border: 1px solid #ccc;
       background: #fff;
@@ -54,13 +57,13 @@
 <body>
   <div class="social-buttons">
     <!-- Google -->
-    <a href="#" class="btn google-btn">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAbFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////+6Pa6iAAAAJXRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAxKOEAAAB5SURBVBiVfc+xDoAgDEVRBHDN9f9fOgjG9rgki8p2GdEUVDDxzZkJRCSgjCRaLDcIuZcTgSWHR9lILQ2a5Fe9cYVV+5Btcz6Q6TRpSwraNg0w30RUhrnD4kBbEmcr3r6ESN59DxTnCKIUzIowvKJYwYUUYZ3fYXvAMrbDRm+9ih9wAAAABJRU5ErkJggg==" alt="Google 로고">
+    <a href="/image/google.png" class="btn google-btn">
+      <img src="/image/google.png" alt="Google 로고">
       Google로 시작하기
     </a>
 
     <!-- Kakao (이미지 URL 그대로 사용 가능) -->
-    <a href="#" class="btn kakao-btn">
+    <a href="/oauth2/authorization/kakao" class="btn kakao-btn">
       <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="Kakao 로고">
       카카오로 시작하기
     </a>
@@ -70,7 +73,6 @@
       <img src="/image/naver.png" alt="Naver 로고">
       네이버로 시작하기
     </a>
-    <img src="/image/naver.png">
   </div>
 </body>
 </html>

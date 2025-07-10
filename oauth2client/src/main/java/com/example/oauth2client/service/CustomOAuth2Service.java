@@ -1,5 +1,7 @@
 package com.example.oauth2client.service;
 
+import java.util.Map;
+
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -29,7 +31,18 @@ public class CustomOAuth2Service extends DefaultOAuth2UserService{
 		// attributes 속성 디버깅
 		System.out.println(oAuth2User.getAttributes());
 		
-		CustomOAuth2User customOAuth2User = new CustomOAuth2User(oAuth2User.getAttributes(),"ROLE_NAVER");
+		String provider = userRequest.getClientRegistration().getRegistrationId();
+        String role = "ROLE_USER";
+        if (provider.equals("naver")) {
+            role = "ROLE_NAVER";
+        } else if (provider.equals("kakao")) {
+            role = "ROLE_KAKAO";
+        }
+        // attributes에 provider 정보 추가
+        Map<String, Object> attributes = new java.util.HashMap<>(oAuth2User.getAttributes());
+        attributes.put("provider", provider);
+		
+		CustomOAuth2User customOAuth2User = new CustomOAuth2User(oAuth2User.getAttributes(),role);
 		return customOAuth2User;
 	}
 }
