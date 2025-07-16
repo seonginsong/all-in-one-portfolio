@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springai.mapper.ChatMapper">
+	<insert id="saveChat" parameterType="com.example.springai.dto.ChatDto">
+		insert into chat(sessionId,userChat,aiChat) values(#{sessionId},#{userChat},#{aiChat})
+	</insert>
+</mapper>

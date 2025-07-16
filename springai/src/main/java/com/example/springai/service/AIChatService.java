@@ -13,13 +13,18 @@ import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.stereotype.Service;
 
+import com.example.springai.dto.ChatDto;
+import com.example.springai.mapper.ChatMapper;
+
 import jakarta.servlet.http.HttpSession;
 
 @Service
 public class AIChatService {
 	private OpenAiChatModel openAiChatModel;
-	public AIChatService(OpenAiChatModel openAiChatModel) {
+	private ChatMapper chatMapper;
+	public AIChatService(OpenAiChatModel openAiChatModel, ChatMapper chatMapper) {
 		this.openAiChatModel = openAiChatModel;
+		this.chatMapper = chatMapper;
 	}
 	
 	// OpenAI서버와 통신할 메서드 선언
@@ -59,5 +64,9 @@ public class AIChatService {
 		session.setAttribute("chatHistory", messageList);
 		
 		return aiReply;
+	}
+	
+	public void saveChat(ChatDto chatDto) {
+		chatMapper.saveChat(chatDto);
 	}
 }
